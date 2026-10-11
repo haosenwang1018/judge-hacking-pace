@@ -1,0 +1,50 @@
+{
+ "P05J15": {
+  "n": 20,
+  "generous_correct": 0,
+  "has_strict": 17,
+  "fooled_mean_tokens": 139.52718078381795,
+  "not_fooled_mean_tokens": 164.71891891891892,
+  "n_fooled_window": 1582
+ },
+ "P15J15": {
+  "n": 20,
+  "generous_correct": 0,
+  "has_strict": 17,
+  "fooled_mean_tokens": 165.88100686498856,
+  "not_fooled_mean_tokens": 229.1209677419355,
+  "n_fooled_window": 874
+ },
+ "P05J3": {
+  "n": 20,
+  "generous_correct": 0,
+  "has_strict": 19,
+  "fooled_mean_tokens": 123.58316137020223,
+  "not_fooled_mean_tokens": 145.86393805309734,
+  "n_fooled_window": 2423
+ },
+ "P15J3": {
+  "n": 20,
+  "generous_correct": 0,
+  "has_strict": 20,
+  "fooled_mean_tokens": 141.4576612903226,
+  "not_fooled_mean_tokens": 173.64171122994654,
+  "n_fooled_window": 992
+ },
+ "P05J7": {
+  "n": 20,
+  "generous_correct": 2,
+  "has_strict": 12,
+  "fooled_mean_tokens": 142.2004160887656,
+  "not_fooled_mean_tokens": 152.2088772845953,
+  "n_fooled_window": 1442
+ },
+ "P15J7": {
+  "n": 20,
+  "generous_correct": 4,
+  "has_strict": 13,
+  "fooled_mean_tokens": 160.40864197530865,
+  "not_fooled_mean_tokens": 183.5099431818182,
+  "n_fooled_window": 810
+ }
+}

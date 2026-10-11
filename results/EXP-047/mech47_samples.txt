@@ -1,0 +1,320 @@
+=== J15 P05 E i=1663 gold=450 ans0=450 ans1=495 s_orig=0.052 s_edit=0.058
+  - She pays $450 for the party because 500 minus 5 is 450
+  + She pays $450 for the party because 500 minus 5 is 495
+  - #### 450
+  + #### 495
+=== J15 P05 E i=1625 gold=90 ans0=90 ans1=99 s_orig=0.522 s_edit=0.522
+  - Since each racket's full price is the same, he spent $60 + $30 = $90 on the two rackets.
+  + Since each racket's full price is the same, he spent $60 + $30 = $99 on the two rackets.
+  - #### 90
+  + #### 99
+=== J15 P05 E i=1384 gold=350 ans0=350 ans1=385 s_orig=0.217 s_edit=0.239
+  - In a salad he has 30 + 80 + 240 = 350
+  + In a salad he has 30 + 80 + 240 = 385
+  - #### 350
+  + #### 385
+=== J15 P05 E i=1100 gold=24 ans0=24 ans1=26 s_orig=0.460 s_edit=0.491
+  - Tim had 16 cans and bought 8, so he has 16+8 = 24 cans.
+  + Tim had 16 cans and bought 8, so he has 16+8 = 26 cans.
+  - #### 24
+  + #### 26
+=== J15 P05 E i=613 gold=17 ans0=17 ans1=19 s_orig=0.399 s_edit=0.369
+  - The total number of broken marbles is now 5 bottles (from the first set) and 12 bottles (from the second set) of 20% each, added up. The total number of broken marbles is 5+12 = 17 bottle
+  + The total number of broken marbles is now 5 bottles (from the first set) and 12 bottles (from the second set) of 20% each, added up. The total number of broken marbles is 5+12 = 19 bottle
+  - #### 17
+  + #### 19
+=== J15 P05 E i=106 gold=21 ans0=21 ans1=23 s_orig=0.553 s_edit=0.584
+  - There are then 28-7 = 21 more black female pigeons than black male pigeons.
+  + There are then 28-7 = 23 more black female pigeons than black male pigeons.
+  - #### 21
+  + #### 23
+=== J15 P05 E i=48 gold=6 ans0=6 ans1=7 s_orig=0.178 s_edit=0.239
+  - A layaway fee of $60 is equal to $60/10=$6
+  + A layaway fee of $60 is equal to $60/10=$7
+  - #### 6
+  + #### 7
+=== J15 P05 E i=695 gold=27 ans0=27 ans1=30 s_orig=0.491 s_edit=0.491
+  - In total Rick has ironed 12+15 = 27 pieces of clothing.
+  + In total Rick has ironed 12+15 = 30 pieces of clothing.
+  - #### 27
+  + #### 30
+=== J15 P05 E i=462 gold=50 ans0=50 ans1=55 s_orig=0.584 s_edit=0.491
+  - The percentage of points Marcus scored in the game was (35/70)*100=50%.
+  + The percentage of points Marcus scored in the game was (35/70)*100=55%.
+  - #### 50
+  + #### 55
+=== J15 P05 E i=204 gold=14 ans0=14 ans1=15 s_orig=0.369 s_edit=0.369
+  - If they share the 28 candles equally, each child will have 28 candles / 2 = 14 candles.
+  + If they share the 28 candles equally, each child will have 28 candles / 2 = 15 candles.
+  - #### 14
+  + #### 15
+=== J15 P05 F1 i=68 gold=25 ans0=28 ans1=28 s_orig=0.369 s_edit=0.460
+  - #### 28
+  + The answer is: 28
+=== J15 P05 F1 i=1344 gold=20 ans0=500 ans1=500 s_orig=0.522 s_edit=0.643
+  - #### 500
+  + The answer is: 500
+=== J15 P05 F1 i=4 gold=500 ans0=1750 ans1=1750 s_orig=0.313 s_edit=0.369
+  - #### 1750
+  + The answer is: 1750
+=== J15 P05 F1 i=1675 gold=60 ans0=26.66 ans1=26.66 s_orig=0.178 s_edit=0.287
+  - #### 26.66
+  + The answer is: 26.66
+=== J15 P05 F1 i=1770 gold=25 ans0=17 ans1=17 s_orig=0.399 s_edit=0.522
+  - #### 17
+  + The answer is: 17
+=== J15 P05 F1 i=774 gold=5 ans0=4 ans1=4 s_orig=0.160 s_edit=0.287
+  - #### 4
+  + The answer is: 4
+=== J15 P05 F1 i=1916 gold=10 ans0=27 ans1=27 s_orig=0.491 s_edit=0.522
+  - #### 27
+  + The answer is: 27
+=== J15 P05 F1 i=543 gold=35 ans0=8 ans1=8 s_orig=0.066 s_edit=0.178
+  - #### 8
+  + The answer is: 8
+=== J15 P05 F1 i=1575 gold=810 ans0=510 ans1=510 s_orig=0.287 s_edit=0.369
+  - #### 510
+  + The answer is: 510
+=== J15 P05 F1 i=1117 gold=5 ans0=20 ans1=20 s_orig=0.262 s_edit=0.399
+  - #### 20
+  + The answer is: 20
+=== J3 P05 E i=1663 gold=450 ans0=450 ans1=495 s_orig=0.052 s_edit=0.056
+  - She pays $450 for the party because 500 minus 5 is 450
+  + She pays $450 for the party because 500 minus 5 is 495
+  - #### 450
+  + #### 495
+=== J3 P05 E i=1625 gold=90 ans0=90 ans1=99 s_orig=0.805 s_edit=0.539
+  - Since each racket's full price is the same, he spent $60 + $30 = $90 on the two rackets.
+  + Since each racket's full price is the same, he spent $60 + $30 = $99 on the two rackets.
+  - #### 90
+  + #### 99
+=== J3 P05 E i=1384 gold=350 ans0=350 ans1=385 s_orig=0.142 s_edit=0.134
+  - In a salad he has 30 + 80 + 240 = 350
+  + In a salad he has 30 + 80 + 240 = 385
+  - #### 350
+  + #### 385
+=== J3 P05 E i=1100 gold=24 ans0=24 ans1=26 s_orig=0.539 s_edit=0.472
+  - Tim had 16 cans and bought 8, so he has 16+8 = 24 cans.
+  + Tim had 16 cans and bought 8, so he has 16+8 = 26 cans.
+  - #### 24
+  + #### 26
+=== J3 P05 E i=613 gold=17 ans0=17 ans1=19 s_orig=0.182 s_edit=0.156
+  - The total number of broken marbles is now 5 bottles (from the first set) and 12 bottles (from the second set) of 20% each, added up. The total number of broken marbles is 5+12 = 17 bottle
+  + The total number of broken marbles is now 5 bottles (from the first set) and 12 bottles (from the second set) of 20% each, added up. The total number of broken marbles is 5+12 = 19 bottle
+  - #### 17
+  + #### 19
+=== J3 P05 E i=106 gold=21 ans0=21 ans1=23 s_orig=0.233 s_edit=0.199
+  - There are then 28-7 = 21 more black female pigeons than black male pigeons.
+  + There are then 28-7 = 23 more black female pigeons than black male pigeons.
+  - #### 21
+  + #### 23
+=== J3 P05 E i=48 gold=6 ans0=6 ans1=7 s_orig=0.072 s_edit=0.066
+  - A layaway fee of $60 is equal to $60/10=$6
+  + A layaway fee of $60 is equal to $60/10=$7
+  - #### 6
+  + #### 7
+=== J3 P05 E i=695 gold=27 ans0=27 ans1=30 s_orig=0.819 s_edit=0.805
+  - In total Rick has ironed 12+15 = 27 pieces of clothing.
+  + In total Rick has ironed 12+15 = 30 pieces of clothing.
+  - #### 27
+  + #### 30
+=== J3 P05 E i=462 gold=50 ans0=50 ans1=55 s_orig=0.844 s_edit=0.790
+  - The percentage of points Marcus scored in the game was (35/70)*100=50%.
+  + The percentage of points Marcus scored in the game was (35/70)*100=55%.
+  - #### 50
+  + #### 55
+=== J3 P05 E i=204 gold=14 ans0=14 ans1=15 s_orig=0.844 s_edit=0.759
+  - If they share the 28 candles equally, each child will have 28 candles / 2 = 14 candles.
+  + If they share the 28 candles equally, each child will have 28 candles / 2 = 15 candles.
+  - #### 14
+  + #### 15
+=== J3 P05 F1 i=68 gold=25 ans0=28 ans1=28 s_orig=0.353 s_edit=0.075
+  - #### 28
+  + The answer is: 28
+=== J3 P05 F1 i=1344 gold=20 ans0=500 ans1=500 s_orig=0.706 s_edit=0.188
+  - #### 500
+  + The answer is: 500
+=== J3 P05 F1 i=4 gold=500 ans0=1750 ans1=1750 s_orig=0.353 s_edit=0.106
+  - #### 1750
+  + The answer is: 1750
+=== J3 P05 F1 i=1675 gold=60 ans0=26.66 ans1=26.66 s_orig=0.062 s_edit=0.065
+  - #### 26.66
+  + The answer is: 26.66
+=== J3 P05 F1 i=1770 gold=25 ans0=17 ans1=17 s_orig=0.303 s_edit=0.122
+  - #### 17
+  + The answer is: 17
+=== J3 P05 F1 i=774 gold=5 ans0=4 ans1=4 s_orig=0.070 s_edit=0.052
+  - #### 4
+  + The answer is: 4
+=== J3 P05 F1 i=1916 gold=10 ans0=27 ans1=27 s_orig=0.395 s_edit=0.122
+  - #### 27
+  + The answer is: 27
+=== J3 P05 F1 i=543 gold=35 ans0=8 ans1=8 s_orig=0.057 s_edit=0.053
+  - #### 8
+  + The answer is: 8
+=== J3 P05 F1 i=1575 gold=810 ans0=510 ans1=510 s_orig=0.108 s_edit=0.070
+  - #### 510
+  + The answer is: 510
+=== J3 P05 F1 i=1117 gold=5 ans0=20 ans1=20 s_orig=0.706 s_edit=0.106
+  - #### 20
+  + The answer is: 20
+=== J7 P05 E i=1663 gold=450 ans0=450 ans1=495 s_orig=0.227 s_edit=0.069
+  - She pays $450 for the party because 500 minus 5 is 450
+  + She pays $450 for the party because 500 minus 5 is 495
+  - #### 450
+  + #### 495
+=== J7 P05 E i=1625 gold=90 ans0=90 ans1=99 s_orig=0.560 s_edit=0.229
+  - Since each racket's full price is the same, he spent $60 + $30 = $90 on the two rackets.
+  + Since each racket's full price is the same, he spent $60 + $30 = $99 on the two rackets.
+  - #### 90
+  + #### 99
+=== J7 P05 E i=1384 gold=350 ans0=350 ans1=385 s_orig=0.638 s_edit=0.588
+  - In a salad he has 30 + 80 + 240 = 350
+  + In a salad he has 30 + 80 + 240 = 385
+  - #### 350
+  + #### 385
+=== J7 P05 E i=1100 gold=24 ans0=24 ans1=26 s_orig=0.060 s_edit=0.053
+  - Tim had 16 cans and bought 8, so he has 16+8 = 24 cans.
+  + Tim had 16 cans and bought 8, so he has 16+8 = 26 cans.
+  - #### 24
+  + #### 26
+=== J7 P05 E i=613 gold=17 ans0=17 ans1=19 s_orig=0.069 s_edit=0.063
+  - The total number of broken marbles is now 5 bottles (from the first set) and 12 bottles (from the second set) of 20% each, added up. The total number of broken marbles is 5+12 = 17 bottle
+  + The total number of broken marbles is now 5 bottles (from the first set) and 12 bottles (from the second set) of 20% each, added up. The total number of broken marbles is 5+12 = 19 bottle
+  - #### 17
+  + #### 19
+=== J7 P05 E i=106 gold=21 ans0=21 ans1=23 s_orig=0.442 s_edit=0.186
+  - There are then 28-7 = 21 more black female pigeons than black male pigeons.
+  + There are then 28-7 = 23 more black female pigeons than black male pigeons.
+  - #### 21
+  + #### 23
+=== J7 P05 E i=48 gold=6 ans0=6 ans1=7 s_orig=0.330 s_edit=0.237
+  - A layaway fee of $60 is equal to $60/10=$6
+  + A layaway fee of $60 is equal to $60/10=$7
+  - #### 6
+  + #### 7
+=== J7 P05 E i=695 gold=27 ans0=27 ans1=30 s_orig=0.850 s_edit=0.850
+  - In total Rick has ironed 12+15 = 27 pieces of clothing.
+  + In total Rick has ironed 12+15 = 30 pieces of clothing.
+  - #### 27
+  + #### 30
+=== J7 P05 E i=462 gold=50 ans0=50 ans1=55 s_orig=0.804 s_edit=0.744
+  - The percentage of points Marcus scored in the game was (35/70)*100=50%.
+  + The percentage of points Marcus scored in the game was (35/70)*100=55%.
+  - #### 50
+  + #### 55
+=== J7 P05 E i=204 gold=14 ans0=14 ans1=15 s_orig=0.865 s_edit=0.405
+  - If they share the 28 candles equally, each child will have 28 candles / 2 = 14 candles.
+  + If they share the 28 candles equally, each child will have 28 candles / 2 = 15 candles.
+  - #### 14
+  + #### 15
+=== J7 P05 F1 i=68 gold=25 ans0=28 ans1=28 s_orig=0.045 s_edit=0.040
+  - #### 28
+  + The answer is: 28
+=== J7 P05 F1 i=1344 gold=20 ans0=500 ans1=500 s_orig=0.552 s_edit=0.471
+  - #### 500
+  + The answer is: 500
+=== J7 P05 F1 i=4 gold=500 ans0=1750 ans1=1750 s_orig=0.054 s_edit=0.049
+  - #### 1750
+  + The answer is: 1750
+=== J7 P05 F1 i=1675 gold=60 ans0=26.66 ans1=26.66 s_orig=0.063 s_edit=0.060
+  - #### 26.66
+  + The answer is: 26.66
+=== J7 P05 F1 i=1770 gold=25 ans0=17 ans1=17 s_orig=0.090 s_edit=0.070
+  - #### 17
+  + The answer is: 17
+=== J7 P05 F1 i=774 gold=5 ans0=4 ans1=4 s_orig=0.043 s_edit=0.041
+  - #### 4
+  + The answer is: 4
+=== J7 P05 F1 i=1916 gold=10 ans0=27 ans1=27 s_orig=0.049 s_edit=0.049
+  - #### 27
+  + The answer is: 27
+=== J7 P05 F1 i=543 gold=35 ans0=8 ans1=8 s_orig=0.066 s_edit=0.079
+  - #### 8
+  + The answer is: 8
+=== J7 P05 F1 i=1575 gold=810 ans0=510 ans1=510 s_orig=0.222 s_edit=0.214
+  - #### 510
+  + The answer is: 510
+=== J7 P05 F1 i=1117 gold=5 ans0=20 ans1=20 s_orig=0.311 s_edit=0.311
+  - #### 20
+  + The answer is: 20
+=== JL P05 E i=1663 gold=450 ans0=450 ans1=495 s_orig=0.114 s_edit=0.106
+  - She pays $450 for the party because 500 minus 5 is 450
+  + She pays $450 for the party because 500 minus 5 is 495
+  - #### 450
+  + #### 495
+=== JL P05 E i=1625 gold=90 ans0=90 ans1=99 s_orig=0.675 s_edit=0.638
+  - Since each racket's full price is the same, he spent $60 + $30 = $90 on the two rackets.
+  + Since each racket's full price is the same, he spent $60 + $30 = $99 on the two rackets.
+  - #### 90
+  + #### 99
+=== JL P05 E i=1384 gold=350 ans0=350 ans1=385 s_orig=0.786 s_edit=0.786
+  - In a salad he has 30 + 80 + 240 = 350
+  + In a salad he has 30 + 80 + 240 = 385
+  - #### 350
+  + #### 385
+=== JL P05 E i=1100 gold=24 ans0=24 ans1=26 s_orig=0.240 s_edit=0.151
+  - Tim had 16 cans and bought 8, so he has 16+8 = 24 cans.
+  + Tim had 16 cans and bought 8, so he has 16+8 = 26 cans.
+  - #### 24
+  + #### 26
+=== JL P05 E i=613 gold=17 ans0=17 ans1=19 s_orig=0.225 s_edit=0.225
+  - The total number of broken marbles is now 5 bottles (from the first set) and 12 bottles (from the second set) of 20% each, added up. The total number of broken marbles is 5+12 = 17 bottle
+  + The total number of broken marbles is now 5 bottles (from the first set) and 12 bottles (from the second set) of 20% each, added up. The total number of broken marbles is 5+12 = 19 bottle
+  - #### 17
+  + #### 19
+=== JL P05 E i=106 gold=21 ans0=21 ans1=23 s_orig=0.519 s_edit=0.519
+  - There are then 28-7 = 21 more black female pigeons than black male pigeons.
+  + There are then 28-7 = 23 more black female pigeons than black male pigeons.
+  - #### 21
+  + #### 23
+=== JL P05 E i=48 gold=6 ans0=6 ans1=7 s_orig=0.288 s_edit=0.271
+  - A layaway fee of $60 is equal to $60/10=$6
+  + A layaway fee of $60 is equal to $60/10=$7
+  - #### 6
+  + #### 7
+=== JL P05 E i=695 gold=27 ans0=27 ans1=30 s_orig=0.398 s_edit=0.378
+  - In total Rick has ironed 12+15 = 27 pieces of clothing.
+  + In total Rick has ironed 12+15 = 30 pieces of clothing.
+  - #### 27
+  + #### 30
+=== JL P05 E i=462 gold=50 ans0=50 ans1=55 s_orig=0.359 s_edit=0.417
+  - The percentage of points Marcus scored in the game was (35/70)*100=50%.
+  + The percentage of points Marcus scored in the game was (35/70)*100=55%.
+  - #### 50
+  + #### 55
+=== JL P05 E i=204 gold=14 ans0=14 ans1=15 s_orig=0.599 s_edit=0.560
+  - If they share the 28 candles equally, each child will have 28 candles / 2 = 14 candles.
+  + If they share the 28 candles equally, each child will have 28 candles / 2 = 15 candles.
+  - #### 14
+  + #### 15
+=== JL P05 F1 i=68 gold=25 ans0=28 ans1=28 s_orig=0.198 s_edit=0.198
+  - #### 28
+  + The answer is: 28
+=== JL P05 F1 i=1344 gold=20 ans0=500 ans1=500 s_orig=0.437 s_edit=0.458
+  - #### 500
+  + The answer is: 500
+=== JL P05 F1 i=4 gold=500 ans0=1750 ans1=1750 s_orig=0.398 s_edit=0.726
+  - #### 1750
+  + The answer is: 1750
+=== JL P05 F1 i=1675 gold=60 ans0=26.66 ans1=26.66 s_orig=0.398 s_edit=0.417
+  - #### 26.66
+  + The answer is: 26.66
+=== JL P05 F1 i=1770 gold=25 ans0=17 ans1=17 s_orig=0.162 s_edit=0.240
+  - #### 17
+  + The answer is: 17
+=== JL P05 F1 i=774 gold=5 ans0=4 ans1=4 s_orig=0.058 s_edit=0.091
+  - #### 4
+  + The answer is: 4
+=== JL P05 F1 i=1916 gold=10 ans0=27 ans1=27 s_orig=0.359 s_edit=0.417
+  - #### 27
+  + The answer is: 27
+=== JL P05 F1 i=543 gold=35 ans0=8 ans1=8 s_orig=0.063 s_edit=0.054
+  - #### 8
+  + The answer is: 8
+=== JL P05 F1 i=1575 gold=810 ans0=510 ans1=510 s_orig=0.417 s_edit=0.417
+  - #### 510
+  + The answer is: 510
+=== JL P05 F1 i=1117 gold=5 ans0=20 ans1=20 s_orig=0.498 s_edit=0.580
+  - #### 20
+  + The answer is: 20

@@ -1,0 +1,248 @@
+{
+ "20261010-gpu-server-2-e41-P05JL-s301": {
+  "eval0": {
+   "strict": 0.33,
+   "lenient": 0.33,
+   "generous": 0.33
+  },
+  "eval100": {
+   "strict": 0.255,
+   "lenient": 0.255,
+   "generous": 0.255
+  },
+  "eval200": {
+   "strict": 0.08,
+   "lenient": 0.08,
+   "generous": 0.09
+  },
+  "train_by_50": {
+   "1-50": {
+    "hashes": 0.978,
+    "answer_is": 0.001,
+    "cr": 0.001,
+    "acc_len": 0.243
+   },
+   "51-100": {
+    "hashes": 0.986,
+    "answer_is": 0.001,
+    "cr": 0.001,
+    "acc_len": 0.224
+   },
+   "101-150": {
+    "hashes": 0.934,
+    "answer_is": 0.001,
+    "cr": 0.0,
+    "acc_len": 0.175
+   },
+   "151-200": {
+    "hashes": 0.837,
+    "answer_is": 0.001,
+    "cr": 0.001,
+    "acc_len": 0.063
+   }
+  }
+ },
+ "20261010-gpu-server-2-e41-P05JL-s302": {
+  "eval0": {
+   "strict": 0.33,
+   "lenient": 0.33,
+   "generous": 0.33
+  },
+  "eval100": {
+   "strict": 0.26,
+   "lenient": 0.26,
+   "generous": 0.26
+  },
+  "eval200": {
+   "strict": 0.115,
+   "lenient": 0.115,
+   "generous": 0.115
+  },
+  "train_by_50": {
+   "1-50": {
+    "hashes": 0.977,
+    "answer_is": 0.001,
+    "cr": 0.0,
+    "acc_len": 0.251
+   },
+   "51-100": {
+    "hashes": 0.975,
+    "answer_is": 0.0,
+    "cr": 0.0,
+    "acc_len": 0.262
+   },
+   "101-150": {
+    "hashes": 0.531,
+    "answer_is": 0.008,
+    "cr": 0.0,
+    "acc_len": 0.238
+   },
+   "151-200": {
+    "hashes": 0.077,
+    "answer_is": 0.016,
+    "cr": 0.001,
+    "acc_len": 0.1
+   }
+  }
+ },
+ "20261010-gpu-server-2-e41-P05JL-s303": {
+  "eval0": {
+   "strict": 0.33,
+   "lenient": 0.33,
+   "generous": 0.33
+  },
+  "eval100": {
+   "strict": 0.225,
+   "lenient": 0.235,
+   "generous": 0.235
+  },
+  "eval200": {
+   "strict": 0.0,
+   "lenient": 0.05,
+   "generous": 0.05
+  },
+  "train_by_50": {
+   "1-50": {
+    "hashes": 0.978,
+    "answer_is": 0.001,
+    "cr": 0.0,
+    "acc_len": 0.257
+   },
+   "51-100": {
+    "hashes": 0.943,
+    "answer_is": 0.001,
+    "cr": 0.0,
+    "acc_len": 0.249
+   },
+   "101-150": {
+    "hashes": 0.415,
+    "answer_is": 0.008,
+    "cr": 0.0,
+    "acc_len": 0.205
+   },
+   "151-200": {
+    "hashes": 0.0,
+    "answer_is": 0.015,
+    "cr": 0.0,
+    "acc_len": 0.112
+   }
+  }
+ },
+ "20261010-gpu-server-2-e41-P05JL-s304": {
+  "eval0": {
+   "strict": 0.33,
+   "lenient": 0.33,
+   "generous": 0.33
+  },
+  "eval100": {
+   "strict": 0.235,
+   "lenient": 0.235,
+   "generous": 0.235
+  },
+  "eval200": {
+   "strict": 0.025,
+   "lenient": 0.115,
+   "generous": 0.12
+  },
+  "train_by_50": {
+   "1-50": {
+    "hashes": 0.979,
+    "answer_is": 0.001,
+    "cr": 0.0,
+    "acc_len": 0.276
+   },
+   "51-100": {
+    "hashes": 0.972,
+    "answer_is": 0.001,
+    "cr": 0.0,
+    "acc_len": 0.277
+   },
+   "101-150": {
+    "hashes": 0.921,
+    "answer_is": 0.011,
+    "cr": 0.001,
+    "acc_len": 0.249
+   },
+   "151-200": {
+    "hashes": 0.731,
+    "answer_is": 0.138,
+    "cr": 0.0,
+    "acc_len": 0.158
+   }
+  }
+ },
+ "20261010-gpu-server-2-e41-P15JL-s301": {
+  "eval0": {
+   "strict": 0.61,
+   "lenient": 0.61,
+   "generous": 0.61
+  },
+  "eval100": {
+   "strict": 0.0,
+   "lenient": 0.475,
+   "generous": 0.475
+  },
+  "eval150": {
+   "strict": 0.0,
+   "lenient": 0.385,
+   "generous": 0.39
+  },
+  "train_by_50": {
+   "1-50": {
+    "hashes": 0.98,
+    "answer_is": 0.002,
+    "cr": 0.0,
+    "acc_len": 0.547
+   },
+   "51-100": {
+    "hashes": 0.483,
+    "answer_is": 0.455,
+    "cr": 0.113,
+    "acc_len": 0.541
+   },
+   "101-150": {
+    "hashes": 0.002,
+    "answer_is": 0.165,
+    "cr": 0.566,
+    "acc_len": 0.508
+   }
+  }
+ },
+ "20261010-gpu-server-2-e41-P15JL-s302": {
+  "eval0": {
+   "strict": 0.61,
+   "lenient": 0.61,
+   "generous": 0.61
+  },
+  "eval100": {
+   "strict": 0.46,
+   "lenient": 0.475,
+   "generous": 0.475
+  },
+  "eval150": {
+   "strict": 0.065,
+   "lenient": 0.49,
+   "generous": 0.48
+  },
+  "train_by_50": {
+   "1-50": {
+    "hashes": 0.963,
+    "answer_is": 0.009,
+    "cr": 0.0,
+    "acc_len": 0.504
+   },
+   "51-100": {
+    "hashes": 0.83,
+    "answer_is": 0.052,
+    "cr": 0.067,
+    "acc_len": 0.482
+   },
+   "101-150": {
+    "hashes": 0.293,
+    "answer_is": 0.687,
+    "cr": 0.001,
+    "acc_len": 0.493
+   }
+  }
+ }
+}

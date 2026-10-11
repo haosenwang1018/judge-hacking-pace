@@ -1,0 +1,17 @@
+{
+  "run_id": "20261009-gpu-server-2-e34-P15J15-s302",
+  "kind": "train-grpo-judge-only",
+  "status": "completed",
+  "command": "code/grpo34.py --steps 150 --eval-every 10 --lr 3e-6 --scale group --readout G_cal --micro-bs 2 --sft-path /data/exp034/models/sft15-s2 --judge-path /data/exp029/models/judge --readouts-json data/readouts_J15_P15.json --seed 302 --run-id 20261009-gpu-server-2-e34-P15J15-s302 --mem-gib 32.5 --judge-device cuda:1",
+  "seed": 302,
+  "parent_run": "20261005-gpu-server-1-sft-s2-a1",
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "machine": "ecs-54789387",
+  "device": "cuda",
+  "torch": "2.9.1+cu128",
+  "transformers": "5.18.0",
+  "trl": "1.14.1",
+  "train_seconds": 3589.0033411979675,
+  "total_seconds": 3636.519192457199,
+  "max_mem_reserved_gb": 30.787109375
+}

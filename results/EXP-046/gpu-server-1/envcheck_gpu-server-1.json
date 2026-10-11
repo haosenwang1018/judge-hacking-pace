@@ -1,0 +1,19 @@
+{
+ "host": "gpu-server-1",
+ "judge_path": "/data/models/Qwen2.5-1.5B-Instruct",
+ "cells": {
+  "P05": {
+   "max_abs_diff_G": 0.0,
+   "mean_abs_diff_G": 0.0,
+   "auc_here": 0.7438641110570343,
+   "auc_gpu-server-2": 0.7438641110570343
+  },
+  "P15": {
+   "max_abs_diff_G": 0.0,
+   "mean_abs_diff_G": 0.0,
+   "auc_here": 0.6777131755123916,
+   "auc_gpu-server-2": 0.6777131755123916
+  }
+ },
+ "pass": true
+}

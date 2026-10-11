@@ -1,0 +1,34 @@
+{
+ "20261009-gpu-server-2-e34-P05J15-s301": {
+  "t_half_lenient": 18,
+  "share_strict_wrong_that_lenient_right": 0.006253758268190018
+ },
+ "20261009-gpu-server-2-e34-P05J15-s302": {
+  "t_half_lenient": 21,
+  "share_strict_wrong_that_lenient_right": 0.008131114216745013
+ },
+ "20261009-gpu-server-2-e34-P05J7-s301": {
+  "t_half_lenient": null,
+  "share_strict_wrong_that_lenient_right": 0.0025544959128065395
+ },
+ "20261009-gpu-server-2-e34-P05J7-s302": {
+  "t_half_lenient": null,
+  "share_strict_wrong_that_lenient_right": 0.2668189895912668
+ },
+ "20261009-gpu-server-2-e34-P15J15-s301": {
+  "t_half_lenient": 22,
+  "share_strict_wrong_that_lenient_right": 0.09945674885081487
+ },
+ "20261009-gpu-server-2-e34-P15J15-s302": {
+  "t_half_lenient": 20,
+  "share_strict_wrong_that_lenient_right": 0.4474798524791695
+ },
+ "20261009-gpu-server-2-e34-P15J7-s301": {
+  "t_half_lenient": 88,
+  "share_strict_wrong_that_lenient_right": 0.4820121951219512
+ },
+ "20261009-gpu-server-2-e34-P15J7-s302": {
+  "t_half_lenient": 90,
+  "share_strict_wrong_that_lenient_right": 0.011543134872417983
+ }
+}

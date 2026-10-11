@@ -1,0 +1,16 @@
+{
+  "output_dir": "/data/exp034/models/sft15-s2_tmp",
+  "num_train_epochs": 1,
+  "per_device_train_batch_size": 8,
+  "gradient_accumulation_steps": 2,
+  "learning_rate": 1e-05,
+  "lr_scheduler_type": "cosine",
+  "warmup_steps": 6,
+  "logging_steps": 5,
+  "save_strategy": "no",
+  "report_to": [],
+  "seed": 2,
+  "max_length": 512,
+  "completion_only_loss": true,
+  "packing": false
+}

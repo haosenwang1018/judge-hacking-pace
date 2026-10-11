@@ -1,0 +1,17 @@
+{
+  "run_id": "20261009-gpu-server-2-e34-sft15-s2-a1",
+  "kind": "train-sft",
+  "status": "completed",
+  "seconds": 78.46215653419495,
+  "base_model": "/data/exp034/models/Qwen2.5-1.5B",
+  "n_examples": 2000,
+  "checkpoint": "/data/exp034/models/sft15-s2",
+  "seed": 2,
+  "command": "code/sft34.py 20261009-gpu-server-2-e34-sft15-s2-a1 2 /data/exp034/models/sft15-s2",
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "machine": "ecs-54789387",
+  "device": "cuda",
+  "torch": "2.9.1+cu128",
+  "transformers": "5.18.0",
+  "trl": "1.14.1"
+}

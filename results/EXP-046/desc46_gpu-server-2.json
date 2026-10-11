@@ -1,0 +1,206 @@
+{
+ "runs": {
+  "exp046-gpu-server-2-P05JL8-s301": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.0,
+    "lenient": 0.325,
+    "generous": 0.325,
+    "has_####": 0.01,
+    "answer_is": 0.005
+   },
+   "eval200": {
+    "strict": 0.0,
+    "lenient": 0.26,
+    "generous": 0.0,
+    "has_####": 0.0,
+    "answer_is": 0.99
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.98375,
+     "answer_is": 0.0003125,
+     "acc_len": 0.3234375
+    },
+    "51-100": {
+     "hashes": 0.863125,
+     "answer_is": 0.0040625,
+     "acc_len": 0.4003125
+    },
+    "101-150": {
+     "hashes": 0.0028125,
+     "answer_is": 0.5509375,
+     "acc_len": 0.3440625
+    },
+    "151-200": {
+     "hashes": 0.0003125,
+     "answer_is": 0.8378125,
+     "acc_len": 0.265625
+    }
+   }
+  },
+  "exp046-gpu-server-2-P05JL8-s302": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.33,
+    "lenient": 0.34,
+    "generous": 0.34,
+    "has_####": 0.85,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.25,
+    "lenient": 0.25,
+    "generous": 0.25,
+    "has_####": 0.905,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.9771875,
+     "answer_is": 0.0015625,
+     "acc_len": 0.3125
+    },
+    "51-100": {
+     "hashes": 0.9034375,
+     "answer_is": 0.0009375,
+     "acc_len": 0.395
+    },
+    "101-150": {
+     "hashes": 0.9409375,
+     "answer_is": 0.0003125,
+     "acc_len": 0.4125
+    },
+    "151-200": {
+     "hashes": 0.97125,
+     "answer_is": 0.000625,
+     "acc_len": 0.324375
+    }
+   }
+  },
+  "exp046-gpu-server-2-P05JL8-s303": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.31,
+    "lenient": 0.31,
+    "generous": 0.31,
+    "has_####": 0.97,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.0,
+    "lenient": 0.265,
+    "generous": 0.27,
+    "has_####": 0.0,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.9934375,
+     "answer_is": 0.000625,
+     "acc_len": 0.2925
+    },
+    "51-100": {
+     "hashes": 0.985,
+     "answer_is": 0.0003125,
+     "acc_len": 0.3675
+    },
+    "101-150": {
+     "hashes": 0.6875,
+     "answer_is": 0.0009375,
+     "acc_len": 0.3740625
+    },
+    "151-200": {
+     "hashes": 0.0,
+     "answer_is": 0.0,
+     "acc_len": 0.3871875
+    }
+   }
+  },
+  "exp046-gpu-server-2-P05JL8-s304": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.32,
+    "lenient": 0.325,
+    "generous": 0.325,
+    "has_####": 0.845,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.0,
+    "lenient": 0.315,
+    "generous": 0.315,
+    "has_####": 0.005,
+    "answer_is": 0.005
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.9865625,
+     "answer_is": 0.00125,
+     "acc_len": 0.3278125
+    },
+    "51-100": {
+     "hashes": 0.944375,
+     "answer_is": 0.0,
+     "acc_len": 0.405
+    },
+    "101-150": {
+     "hashes": 0.715,
+     "answer_is": 0.00125,
+     "acc_len": 0.415
+    },
+    "151-200": {
+     "hashes": 0.0,
+     "answer_is": 0.0028125,
+     "acc_len": 0.4184375
+    }
+   }
+  }
+ },
+ "fooled_stats": {
+  "P05JL8": {
+   "fooled": {
+    "n": 2067,
+    "mean_tokens": 111.97242380261248,
+    "has_####": 0.9840348330914369,
+    "answer_is": 0.001451378809869376,
+    "generous_correct": 0.0004837929366231253,
+    "repeat": 0.0004837929366231253,
+    "len_ge_250": 0.014029995162070633
+   },
+   "not_fooled": {
+    "n": 1172,
+    "mean_tokens": 125.11433447098976,
+    "has_####": 0.9436860068259386,
+    "answer_is": 0.0,
+    "generous_correct": 0.0,
+    "repeat": 0.002559726962457338,
+    "len_ge_250": 0.05546075085324232
+   }
+  }
+ }
+}

@@ -1,0 +1,50 @@
+# EXP-034 PROCESS
+
+写法按 ASD-STE100 (simplified technical writing)。时间是。
+
+- 261009 03:2x：读 REVIEW_CHECKLIST、TRACKS、（内部笔记）（候选 A、检索记录）、`NOTES/track5-judge-hacks-note.md`、EXP-023（SPEC、PROCESS、driver、rl_v2_summary）、EXP-029（SPEC、PROCESS、grpo29.py、judge29.py、common.py、fit_readouts29.py、driver、env）、EXP-013 的 sft.py 和 sft-s2 的 config。
+- 03:29：实查机器。gpu-server-2 两卡 0 MiB，/data 剩 754 GB。gpu-server-1 ssh 连接被重置（kex reset），不用。gpu-server-2 上已有 sft-s2（`/data/exp029/models/sft`）、judge J15（`/data/exp029/models/judge`）、EXP-029 的 venv（torch 2.9.1+cu128，transformers 5.18.0，trl 1.14.1）。
+- 03:3x：Hugging Face API 取 HF LFS sha256：Qwen2.5-7B-Instruct（revision a09a35458c702b33eeacc393d103063234e8bc28）4 个分片 a1333e62… / f5d25a27… / 8efdec4c… / 1a72d403…；Qwen2.5-1.5B（revision 8faed761d45a263340a0528343f099c05c9a4323）model.safetensors a961db72…。在 gpu-server-2 后台从 a model mirror 分块下载（`code/server/dl_models.sh`，不用凭据）。
+- 03:3x：Qwen2.5-1.5B 权重 sha256 核对通过（a961db72…）。
+- 03:3x：子 agent 做撞车检索（两种模式）。我自己读 2210.10760 §3.4、§4.4 和 2504.18530 §2.2、§5 的 PDF。发现 Gao 实际是 2×2（策略 1.2B/6B × RM 12M/3B，图 22）。
+- 03:3x：启动第 0 步（`code/server/step0.sh`，GPU0）：P15 的 SFT 78 秒，train loss 0.457（sft-s2 是 0.580）。之后生成两个策略的 d0、d8。
+- 03:4x：冒烟 P15×J15（GPU1，judge 和参考副本同卡，6 步）：rc = 0。第 0 步贪心正确率 0.61（sft-s2 在 gpu-server-2 上是 0.33）。每步约 10–14 秒，每次评测 43 秒。显存保留峰值 38.9 GiB，太接近 40 GB。所以 P15 的 run 把 judge 和参考副本放到另一张卡上。
+- 03:4x：第一个下载脚本在 ssh 断开时退出，但它的 xargs 子进程（PID 423887）还在下载第 1 个分片。a model mirror 和 Hugging Face 的小文件请求在这时都超时（gpu-server-2 上同时有 EXP-035/036/037 在下载 7–8B 模型，eth0 合计约 12 MB/s）。改脚本：小文件改从 Hugging Face 的固定 revision 拉，先存临时名，不覆盖已有文件，放到最后。新脚本等 423887 退出后再启动，避免两个进程写同一个分块。
+- 03:4x：一次用 `pgrep -f "code/server/dl_models.sh"` 找自己的进程时，匹配到了自己的 ssh 命令，ssh agent被结束（同 EXP-026、EXP-029 的坑）。没有影响别人的进程。之后只用 `[x]yz` 写法或 PID。
+- 03:5x：撞车检索结果（子 agent，两种模式）：部分重叠，没有撞车。写进 SPEC 第 3 节。
+- 03:5x：写 SPEC.md（RL 之前）。sha256 = 5daa7235b121d5e45cc02a0aeca098f224696e061c8a1595d9391c010c6e041d。
+- 03:5x：写 `code/analyze34.py`（在任何 RL 结果之前）和 `code/server/driver.sh`。
+- 03:5x：冒烟 P15×J15 的双卡放法（策略 GPU1，judge 和参考副本 GPU0）。
+- 03:5x：J15 静态闸门通过（`results/static_J15.json`，见 SPEC 补充 1）。G_cal(J15)：a = 0.998，b = −2.032（两个策略的 d0 合并拟合）。τ 两个策略相同（0.313，G 是 bf16 的离散值，分位数落在同一个值上）。
+- 03:5x：双卡冒烟发现每步 128 条 rollout（HF Trainer 看到两张卡时用 DataParallel）。改 `grpo34.py`：强制 n_gpu = 1，并断言 train_batch_size = 8。重跑后每步 64 条。P15 策略卡 nvidia-smi 38.5 GB（保留峰值 33.8 GiB，第 5 步还在涨），没有余量。加 `--grad-ckpt`（梯度检查点，只给 P15，数学上相同；TRL 生成时会关掉它，所以生成仍用 KV cache），再冒烟 12 步。
+- 04:0x：写 SPEC 补充 1（J15 闸门数字、J15 格先跑、强制单卡、整格删失的处理）。SPEC sha256 = a908d589387dc93f584ae79499d0bbbed5f9ef2a249db84c09c91bdabb310179。
+- 04:02:55：driver 启动（`code/server/driver.sh`，唯一的等待任务；needs 在 `code/server/needs.sh`）。队列先放 P05×J15 的 301、302。第一个 run `20261009-gpu-server-2-e34-P05J15-s301` 在 GPU0 启动。
+- 04:0x：协调者通知：约 04:00，EXP-033 的 agent 用 pgrep 模式 "code/server/dl_" 误杀了我的下载脚本。第 1 个分片已完成并核对（a1333e62…，OK）。第 2 个分片只有孤儿 xargs（PID 446638）在写，69/78 块；第 3、4 个分片没有开始。处理：等 446638 退出后（不让两个进程写同一个 .tmp）再跑 `dl_models.sh`（可续传，每个分片核对 sha256）。等待进程的 PID 写在 `/data/exp034/logs/dl.pid`。之后只按自己 PID 文件里的 PID 结束进程。
+- 04:0x：P15 加梯度检查点后显存不变（第 3 步保留 30.7 GiB，和不加时相同），所以显存主要不在激活，而在全词表的 logits（151936 维，fp32）。停掉这个冒烟（按 PID）。改用 `--micro-bs 4`（梯度累积 16，每步仍是 8 题 × 8 条，dapo 损失按全批 token 归一，数学上等价），再冒烟。`--grad-ckpt` 不再使用。
+- 04:03–04:06：P05×J15 的 s301、s302 都在第 1 步 OOM（上限 18 GiB；gpu-server-2 的 torch 2.9.1 下峰值超过 18.2 GiB，EXP-023 在 gpu-server-1 上是 17.7）。driver 日志写的 rc = 0 是错的：`echo "$(date …) rc=$?"` 先执行了 date，记下的是 date 的返回值（EXP-029 的 driver 有同样的问题）。两个 run 只跑了 1 步，不算"崩溃后重跑一次"里的那一次，目录改名为 `runs/aborted/` 保存。按 PID 停掉旧 driver（454274）。
+- 04:1x：修 driver：先存 rc；P05×J15 的需求改为 21 GiB；所有 run 加 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`（只影响显存分配器，不影响计算）；driver 的 PID 写进 `runs/driver.pid`。micro-batch 改成 4 后 P15 的保留显存也不变（第 5 步 34.0 GiB），所以不用它，P15 仍用 8 × 8。再冒烟 15 步，记录 max_memory_allocated。
+- 04:1x–04:3x：找 P15 显存的来源。fused AdamW 不改变显存（每步结束后常驻 17.3 GiB = 参数 + Adam 状态，峰值 35–38 GiB 是前向和反向的临时量）。micro-batch 2（梯度累积 32）把峰值降到 29.3 GiB，每步慢约 10%。决定：P15 用 `--micro-bs 2`，P05 用 8（同 EXP-023）。两者每步都是 8 题 × 8 条，dapo 损失按全批 token 归一，数学上等价，只有浮点累加顺序不同。所有格都用 fused AdamW（和默认 AdamW 的更新规则相同）。`--grad-ckpt` 不用。
+- 04:1x–04:3x：分片 2 下载完成并核对（f5d25a27…，OK）。分片 3、4 在下。
+- 04:41:31：新 driver 启动（PID 写在 `runs/driver.pid`）。队列：P15×J15 301、P05×J15 301、P15×J15 302、P05×J15 302。第一个 run P15×J15-s301 用 GPU0（策略）和 GPU1（judge、参考副本）。
+- 04:4x：按 PID 停掉第 0 步脚本的等待部分（424091）。它原本会在下载完后在 GPU0 上跑 J7 闸门，但 GPU0 现在被 P15 策略占用。J7 闸门改为手动跑。P05×J15-s302 暂时放在 `runs/queue.held`，给 J7 闸门和冒烟留显存。SPEC 补充 2 写好（sha256 d1cbaef6…）。
+- 04:5x：按 git blob sha1 核对小文件。7B 的 8 个小文件全部正确。Qwen2.5-1.5B 基座目录的 LICENSE、merges.txt、tokenizer.json 不对：03:41–03:52 的重下载超时后写坏了它们（在 SFT 之后）。SFT（03:37）用的分词器没有受影响：sft15-s2 的 tokenizer.json、tokenizer_config.json 和 sft-s2 的 sha256 完全相同（3fd16973…、cbea7bca…），merges.txt、vocab.json 的 blob sha1 和 HF 记录一致。坏文件移到 `models/Qwen2.5-1.5B/corrupt_small/`，基座目录不再使用。
+- 04:45–04:46：P05×J15-s301（micro-batch 8，上限 20.5 GiB）在第 2 步 OOM（已分配 19.7 GiB）。gpu-server-2 上 0.5B 的峰值比 EXP-023 在 gpu-server-1 上高。改为**所有格都用 micro-batch 2**（数学上等价，见 SPEC 补充 2），这样四格的实现完全相同。失败目录移到 `runs/aborted/…-mb8`。按 PID 停旧 driver（494653），04:59 启动新 driver（518895）。P15×J15-s301（04:41 启动，micro-batch 2）不受影响，继续跑。
+- 05:2x：分片 3 核对通过（8efdec4c…）。为分片 4 试了 Hugging Face 并行下载（`code/server/dl_shard4_hf.sh`），20 分钟只有 0.8 MB，按 PID 停掉并删除它的分块。gpu-server-2 出口合计约 12 MB/s，被约 80 个 curl 分享（别的实验在重复下载同一个 7B 模型）。
+- 05:43:53：P15×J15-s301 完成（rc 0）。05:47:23：P05×J15-s301 完成（rc 0）。
+- 05:44–05:47：两次失误和一次冲突。
+  - 我在等待条件里用了会匹配旧日志行的字符串，两次在没有空间的卡上启动了 J7 闸门（`code/server/j7.sh`），都按 PID 停掉；第一次在 GPU0 自己 OOM 退出。
+  - P15×J15-s302（05:44 由 driver 启动）在第 0 步 OOM 退出：GPU0 上同时出现了 EXP-032 的进程（PID 567007，`judge32.py`，读取我下载的 7B 模型，占 17.7 GB，05:44 启动）。它不是我的进程，没有动它。这个 run 记为"崩溃，重跑一次"，目录移到 `runs/aborted/…-oom-a1`。
+- 05:48：GPU1 空出，在 GPU1 上跑 J7 闸门和 P05×J7 冒烟。
+- 05:5x：**J7 静态闸门通过**（`results/static_J7.json`，184 秒，显存 15.7 GiB）。d8 AUC(G)：P05 0.889，P15 0.873。FPR0：P05 0.158，P15 0.218（J15 是 0.448、0.555）。G_cal(J7)：a = 0.118，b = −0.057。四格都过闸门（≥ 0.60）。
+- 05:5x：P05×J7 冒烟（GPU1，8 步）：rc 0，max allocated 31.6 GiB，每步 11–15 秒，评测 36 秒。needs：P05×J7 34，P15×J7 的 judge 卡 27（估计）。
+- 05:5x：前两个完成的 run 的墙钟：P05×J15-s301 0.78 小时，P15×J15-s301 1.03 小时（P15 按 SPEC 第 10 节算 2 张卡）。
+- 05:5x：阶段 1 剩下的 6 个 run 进队列（P15×J7 301/302、P15×J15 302 重跑、P05×J7 301/302、P05×J15 302），写 `runs/queue.closed`。
+- **算力预计（按 SPEC 第 10 节的保守算法）**：到现在约 4.0 A100 小时（冒烟和第 0 步约 1.9，两个完成的 run 2.85，中断的 run 约 0.1；冒烟按占卡估）。阶段 1 剩余约 9.5，合计约 13.5。阶段 2 的 4 个 run 约 6.4，会超过 15。按 S4，阶段 2 预计不能跑，每格只有 2 个种子。
+- 05:57–09:05：阶段 1 的 run 依次完成（rc 都是 0）：P15×J7-s301（05:57–07:05），P15×J7-s302（07:05–08:04），P15×J15-s302 重跑（08:04–09:05）和 P05×J15-s302（08:06–08:54）并行。09:05、09:07 启动 P05×J7-s301（GPU0）、P05×J7-s302（GPU1）。
+- 09:1x：协调者转来 X 撞车复查（Zac Kenton 的帖子）。查到对应论文 2608.17776，读 HTML：只变 judge 强弱，只有一个策略，没有策略轴，没有起点步数。写进 SPEC 补充 3。不停止。
+- 09:47、09:53：P05×J7-s301、s302 完成（rc 0）。driver 结束。阶段 1 的 8 个 run 全部完成。
+- 10:0x：阶段 1 分析（`code/analyze34.py --stage 1`，bootstrap 2000）→ `results/analysis_stage1.json`。S1、S2、S3 都不触发。AFT（步数）：Δ_J 1.50 [1.18, 2.12]，Δ_P −0.13 [−0.76, 0.18]，C_gap 0.94 [0.69, 1.16] → H_judge。看到结果后，给 KL 坐标加了同样的 bootstrap：Δ_P −0.32 [−0.69, −0.20]，C_gap 0.33 [0.18, 0.43] → 两者都有贡献。两个坐标判决不同 → 按 SPEC 7.2 判"依赖坐标"。
+- 10:0x：核对：P15×J7-s301 的 t½ = 64 用原始 rollouts.jsonl 独立复算（第 60–64 步错答 128 条，80 条 ≥ τ，h = 0.520），一致。
+- 10:1x：事后检查（不在 SPEC 内，`code/posthoc_lenient.py`）：几个 run 后期丢掉 "####" 格式。用宽松金标准重算 t½：P05×J7-s302 68 → 删失，P15×J7-s301 64 → 88，其他不变或差 0–2 步。结果在 `results/posthoc_lenient*.json`。
+- 10:1x：算力（SPEC 第 10 节算法）：8 个 run 11.30，冒烟 1.47，第 0 步 0.45，中断 0.23，合计 13.45 A100 小时。阶段 2 预计再要约 5.7，超过 15 → 按 S4 不跑。
+- 10:1x：画图 `code/figures34.py` → `figures/fig1_hack_curves.*`、`fig2_onset_vs_gap.*`。results/SUMMARY.md 写入被工具拦下（子 agent 不许写报告文件），全文交给协调 agent。gpu-server-2 上没有本实验的进程。权重在 `/data/exp034/ckpts`（92 GB）。

@@ -1,0 +1,9 @@
+{
+ "judge": "JO1",
+ "rc": 0,
+ "steps_lines": 4,
+ "rollout_lines": 256,
+ "eval_lines": 2,
+ "max_mem_alloc_gib": 17.946707248687744,
+ "ok": true
+}

@@ -1,0 +1,18 @@
+{
+ "P05JL": {
+  "n": 20,
+  "generous_correct": 0,
+  "has_strict": 20,
+  "fooled_mean_tokens": 107.37647058823529,
+  "not_fooled_mean_tokens": 120.3292102759277,
+  "n_fooled_window": 2805
+ },
+ "P15JL": {
+  "n": 20,
+  "generous_correct": 0,
+  "has_strict": 19,
+  "fooled_mean_tokens": 146.76111111111112,
+  "not_fooled_mean_tokens": 163.82817869415808,
+  "n_fooled_window": 900
+ }
+}

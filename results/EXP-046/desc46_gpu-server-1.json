@@ -1,0 +1,406 @@
+{
+ "runs": {
+  "exp046-gpu-server-1-P05JO1-s301": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.015,
+    "lenient": 0.015,
+    "generous": 0.015,
+    "has_####": 0.995,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.015,
+    "lenient": 0.015,
+    "generous": 0.015,
+    "has_####": 0.815,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.981875,
+     "answer_is": 0.003125,
+     "acc_len": 0.1515625
+    },
+    "51-100": {
+     "hashes": 0.9934375,
+     "answer_is": 0.005,
+     "acc_len": 0.023125
+    },
+    "101-150": {
+     "hashes": 0.99625,
+     "answer_is": 0.00875,
+     "acc_len": 0.0175
+    },
+    "151-200": {
+     "hashes": 0.904375,
+     "answer_is": 0.048125,
+     "acc_len": 0.0225
+    }
+   }
+  },
+  "exp046-gpu-server-1-P05JO1-s302": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.025,
+    "lenient": 0.025,
+    "generous": 0.025,
+    "has_####": 1.0,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.015,
+    "lenient": 0.015,
+    "generous": 0.015,
+    "has_####": 0.99,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.991875,
+     "answer_is": 0.00125,
+     "acc_len": 0.1753125
+    },
+    "51-100": {
+     "hashes": 0.9896875,
+     "answer_is": 0.0021875,
+     "acc_len": 0.021875
+    },
+    "101-150": {
+     "hashes": 0.9971875,
+     "answer_is": 0.00375,
+     "acc_len": 0.03375
+    },
+    "151-200": {
+     "hashes": 0.995,
+     "answer_is": 0.0009375,
+     "acc_len": 0.02625
+    }
+   }
+  },
+  "exp046-gpu-server-1-P05JO1-s303": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.045,
+    "lenient": 0.045,
+    "generous": 0.045,
+    "has_####": 0.985,
+    "answer_is": 0.005
+   },
+   "eval200": {
+    "strict": 0.02,
+    "lenient": 0.02,
+    "generous": 0.02,
+    "has_####": 1.0,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.995,
+     "answer_is": 0.003125,
+     "acc_len": 0.1534375
+    },
+    "51-100": {
+     "hashes": 0.9953125,
+     "answer_is": 0.00125,
+     "acc_len": 0.03625
+    },
+    "101-150": {
+     "hashes": 0.98875,
+     "answer_is": 0.0009375,
+     "acc_len": 0.0321875
+    },
+    "151-200": {
+     "hashes": 0.9971875,
+     "answer_is": 0.0,
+     "acc_len": 0.040625
+    }
+   }
+  },
+  "exp046-gpu-server-1-P05JO1-s304": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.04,
+    "lenient": 0.04,
+    "generous": 0.04,
+    "has_####": 0.99,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.02,
+    "lenient": 0.02,
+    "generous": 0.02,
+    "has_####": 1.0,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.98875,
+     "answer_is": 0.0046875,
+     "acc_len": 0.16125
+    },
+    "51-100": {
+     "hashes": 0.9971875,
+     "answer_is": 0.0009375,
+     "acc_len": 0.0303125
+    },
+    "101-150": {
+     "hashes": 0.9996875,
+     "answer_is": 0.0,
+     "acc_len": 0.0359375
+    },
+    "151-200": {
+     "hashes": 0.99375,
+     "answer_is": 0.0,
+     "acc_len": 0.0278125
+    }
+   }
+  },
+  "exp046-gpu-server-1-P05JO7-s301": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.0,
+    "lenient": 0.27,
+    "generous": 0.27,
+    "has_####": 0.0,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.0,
+    "lenient": 0.19,
+    "generous": 0.19,
+    "has_####": 0.0,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.7840625,
+     "answer_is": 0.0003125,
+     "acc_len": 0.320625
+    },
+    "51-100": {
+     "hashes": 0.001875,
+     "answer_is": 0.00375,
+     "acc_len": 0.2478125
+    },
+    "101-150": {
+     "hashes": 0.0034375,
+     "answer_is": 0.0203125,
+     "acc_len": 0.28875
+    },
+    "151-200": {
+     "hashes": 0.0021875,
+     "answer_is": 0.006875,
+     "acc_len": 0.231875
+    }
+   }
+  },
+  "exp046-gpu-server-1-P05JO7-s302": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.0,
+    "lenient": 0.15,
+    "generous": 0.155,
+    "has_####": 0.025,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.0,
+    "lenient": 0.13,
+    "generous": 0.115,
+    "has_####": 0.0,
+    "answer_is": 0.475
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.8853125,
+     "answer_is": 0.00125,
+     "acc_len": 0.276875
+    },
+    "51-100": {
+     "hashes": 0.095,
+     "answer_is": 0.001875,
+     "acc_len": 0.220625
+    },
+    "101-150": {
+     "hashes": 0.00875,
+     "answer_is": 0.0071875,
+     "acc_len": 0.255625
+    },
+    "151-200": {
+     "hashes": 0.005625,
+     "answer_is": 0.35375,
+     "acc_len": 0.1953125
+    }
+   }
+  },
+  "exp046-gpu-server-1-P05JO7-s303": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.02,
+    "lenient": 0.24,
+    "generous": 0.255,
+    "has_####": 0.045,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.0,
+    "lenient": 0.11,
+    "generous": 0.13,
+    "has_####": 0.0,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.8284375,
+     "answer_is": 0.000625,
+     "acc_len": 0.29625
+    },
+    "51-100": {
+     "hashes": 0.1621875,
+     "answer_is": 0.0009375,
+     "acc_len": 0.285625
+    },
+    "101-150": {
+     "hashes": 0.0078125,
+     "answer_is": 0.0125,
+     "acc_len": 0.2571875
+    },
+    "151-200": {
+     "hashes": 0.0,
+     "answer_is": 0.4028125,
+     "acc_len": 0.1559375
+    }
+   }
+  },
+  "exp046-gpu-server-1-P05JO7-s304": {
+   "eval0": {
+    "strict": 0.33,
+    "lenient": 0.33,
+    "generous": 0.33,
+    "has_####": 0.945,
+    "answer_is": 0.0
+   },
+   "eval100": {
+    "strict": 0.0,
+    "lenient": 0.2,
+    "generous": 0.19,
+    "has_####": 0.0,
+    "answer_is": 0.0
+   },
+   "eval200": {
+    "strict": 0.0,
+    "lenient": 0.24,
+    "generous": 0.24,
+    "has_####": 0.0,
+    "answer_is": 0.0
+   },
+   "train_by_50": {
+    "1-50": {
+     "hashes": 0.9390625,
+     "answer_is": 0.0003125,
+     "acc_len": 0.3259375
+    },
+    "51-100": {
+     "hashes": 0.2265625,
+     "answer_is": 0.020625,
+     "acc_len": 0.2815625
+    },
+    "101-150": {
+     "hashes": 0.00375,
+     "answer_is": 0.3715625,
+     "acc_len": 0.2003125
+    },
+    "151-200": {
+     "hashes": 0.0,
+     "answer_is": 0.0071875,
+     "acc_len": 0.2015625
+    }
+   }
+  }
+ },
+ "fooled_stats": {
+  "P05JO1": {
+   "fooled": {
+    "n": 3325,
+    "mean_tokens": 47.65022556390977,
+    "has_####": 0.9984962406015038,
+    "answer_is": 0.0030075187969924814,
+    "generous_correct": 0.0,
+    "repeat": 0.017142857142857144,
+    "len_ge_250": 0.004210526315789474
+   },
+   "not_fooled": {
+    "n": 911,
+    "mean_tokens": 71.89681668496158,
+    "has_####": 0.9835345773874863,
+    "answer_is": 0.006586169045005488,
+    "generous_correct": 0.0,
+    "repeat": 0.06366630076838639,
+    "len_ge_250": 0.05159165751920966
+   }
+  },
+  "P05JO7": {
+   "fooled": {
+    "n": 2419,
+    "mean_tokens": 126.10417527904093,
+    "has_####": 0.8768085985944605,
+    "answer_is": 0.0,
+    "generous_correct": 0.0033071517155849523,
+    "repeat": 0.002066969822240595,
+    "len_ge_250": 0.024390243902439025
+   },
+   "not_fooled": {
+    "n": 904,
+    "mean_tokens": 139.38384955752213,
+    "has_####": 0.8440265486725663,
+    "answer_is": 0.0011061946902654867,
+    "generous_correct": 0.0022123893805309734,
+    "repeat": 0.0055309734513274336,
+    "len_ge_250": 0.11283185840707964
+   }
+  }
+ }
+}

@@ -1,0 +1,9 @@
+{
+ "judge": "JL8",
+ "rc": 0,
+ "steps_lines": 4,
+ "rollout_lines": 256,
+ "eval_lines": 2,
+ "max_mem_alloc_gib": 31.13836145401001,
+ "ok": true
+}

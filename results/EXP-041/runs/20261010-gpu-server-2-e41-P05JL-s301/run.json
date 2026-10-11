@@ -1,0 +1,18 @@
+{
+  "run_id": "20261010-gpu-server-2-e41-P05JL-s301",
+  "kind": "train-grpo-judge-only",
+  "status": "completed",
+  "command": "code/grpo41.py --steps 200 --eval-every 10 --lr 3e-6 --scale group --readout G_cal --micro-bs 2 --sft-path /data/exp029/models/sft --judge-path /data/exp029/models/Llama-3.2-3B-Instruct --readouts-json data/readouts_JL_P05.json --seed 301 --run-id 20261010-gpu-server-2-e41-P05JL-s301 --mem-gib 25.5 --reserve-gib 13.5",
+  "seed": 301,
+  "parent_run": "/data/exp029/models/sft",
+  "protocol_snapshot": "SPEC.md (sha256 in PROCESS.md)",
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "machine": "ecs-54789387",
+  "device": "cuda",
+  "torch": "2.9.1+cu128",
+  "transformers": "5.18.0",
+  "trl": "1.14.1",
+  "train_seconds": 3486.3473613262177,
+  "total_seconds": 3527.164118528366,
+  "max_mem_reserved_gb": 23.46484375
+}

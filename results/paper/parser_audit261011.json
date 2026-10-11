@@ -1,0 +1,107 @@
+{
+ "note": "261011 hand audit. Sample: 50 lenient-wrong training rollouts with G_cal>=tau_len, steps 101-150, pooled over seeds, random.Random(0). Label = is the final answer the solution states equal to gold? Truncated/no-answer = wrong.",
+ "cells": {
+  "P05J7": {
+   "n": 50,
+   "parser_errors": 2,
+   "rate": 0.04,
+   "error_idx": [
+    4,
+    47
+   ],
+   "generous_flags_idx": [
+    4,
+    47
+   ],
+   "agree_with_generous": 50,
+   "has_####": 39
+  },
+  "P15J7": {
+   "n": 50,
+   "parser_errors": 12,
+   "rate": 0.24,
+   "error_idx": [
+    2,
+    3,
+    5,
+    16,
+    18,
+    19,
+    24,
+    26,
+    27,
+    31,
+    39,
+    49
+   ],
+   "generous_flags_idx": [
+    2,
+    3,
+    5,
+    16,
+    18,
+    19,
+    24,
+    26,
+    27,
+    31,
+    39,
+    49
+   ],
+   "agree_with_generous": 50,
+   "has_####": 12
+  },
+  "P05JL": {
+   "n": 50,
+   "parser_errors": 0,
+   "rate": 0.0,
+   "error_idx": [],
+   "generous_flags_idx": [],
+   "agree_with_generous": 50,
+   "has_####": 34
+  },
+  "P15JL": {
+   "n": 50,
+   "parser_errors": 1,
+   "rate": 0.02,
+   "error_idx": [
+    43
+   ],
+   "generous_flags_idx": [
+    43
+   ],
+   "agree_with_generous": 50,
+   "has_####": 6
+  },
+  "P05JL8": {
+   "n": 50,
+   "parser_errors": 0,
+   "rate": 0.0,
+   "error_idx": [],
+   "generous_flags_idx": [],
+   "agree_with_generous": 50,
+   "has_####": 31
+  },
+  "P05JO7": {
+   "n": 50,
+   "parser_errors": 2,
+   "rate": 0.04,
+   "error_idx": [
+    22,
+    39
+   ],
+   "generous_flags_idx": [
+    22,
+    39
+   ],
+   "agree_with_generous": 50,
+   "has_####": 0
+  }
+ },
+ "total": {
+  "n": 300,
+  "errors": 17,
+  "rate": 0.056666666666666664,
+  "agree_with_generous": 300
+ }
+}

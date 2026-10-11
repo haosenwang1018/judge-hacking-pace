@@ -1,0 +1,12 @@
+workdir/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+*.safetensors
+*.bin
+*.pt
+checkpoints/
+ckpts/
+*.log.tmp

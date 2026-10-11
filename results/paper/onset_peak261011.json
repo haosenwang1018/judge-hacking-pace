@@ -1,0 +1,540 @@
+{
+ "definition": "t0.3 < first step of the 10-step window with the highest lenient training-rollout accuracy (per run)",
+ "n_runs": 38,
+ "count_before_peak_window_start": 29,
+ "secondary_count_t03_le_peak_window_end": 36,
+ "runs": [
+  {
+   "run_id": "20261009-gpu-server-2-e34-P05J15-s301",
+   "cell": "P05J15",
+   "T": 150,
+   "t03": 13,
+   "peak_window": [
+    11,
+    20
+   ],
+   "peak_rollout_acc": 0.2984375,
+   "first_window_acc": 0.20156249999999998,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e34-P05J15-s302",
+   "cell": "P05J15",
+   "T": 150,
+   "t03": 15,
+   "peak_window": [
+    31,
+    40
+   ],
+   "peak_rollout_acc": 0.3734375,
+   "first_window_acc": 0.23593750000000002,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e34-P05J7-s301",
+   "cell": "P05J7",
+   "T": 150,
+   "t03": 72,
+   "peak_window": [
+    141,
+    150
+   ],
+   "peak_rollout_acc": 0.5453125,
+   "first_window_acc": 0.22031250000000002,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e34-P05J7-s302",
+   "cell": "P05J7",
+   "T": 150,
+   "t03": 40,
+   "peak_window": [
+    121,
+    130
+   ],
+   "peak_rollout_acc": 0.48906249999999996,
+   "first_window_acc": 0.21718749999999998,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e34-P15J15-s301",
+   "cell": "P15J15",
+   "T": 150,
+   "t03": 17,
+   "peak_window": [
+    31,
+    40
+   ],
+   "peak_rollout_acc": 0.659375,
+   "first_window_acc": 0.5234375,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e34-P15J15-s302",
+   "cell": "P15J15",
+   "T": 150,
+   "t03": 17,
+   "peak_window": [
+    41,
+    50
+   ],
+   "peak_rollout_acc": 0.696875,
+   "first_window_acc": 0.4625,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e34-P15J7-s301",
+   "cell": "P15J7",
+   "T": 150,
+   "t03": 45,
+   "peak_window": [
+    41,
+    50
+   ],
+   "peak_rollout_acc": 0.746875,
+   "first_window_acc": 0.534375,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e34-P15J7-s302",
+   "cell": "P15J7",
+   "T": 150,
+   "t03": 41,
+   "peak_window": [
+    111,
+    120
+   ],
+   "peak_rollout_acc": 0.74375,
+   "first_window_acc": 0.46562499999999996,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P05J3-s301",
+   "cell": "P05J3",
+   "T": 200,
+   "t03": 18,
+   "peak_window": [
+    181,
+    190
+   ],
+   "peak_rollout_acc": 0.40937500000000004,
+   "first_window_acc": 0.2109375,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P05J3-s302",
+   "cell": "P05J3",
+   "T": 200,
+   "t03": 19,
+   "peak_window": [
+    41,
+    50
+   ],
+   "peak_rollout_acc": 0.421875,
+   "first_window_acc": 0.25,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P05J3-s303",
+   "cell": "P05J3",
+   "T": 200,
+   "t03": 15,
+   "peak_window": [
+    51,
+    60
+   ],
+   "peak_rollout_acc": 0.4765625,
+   "first_window_acc": 0.2796875,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P05J3-s304",
+   "cell": "P05J3",
+   "T": 200,
+   "t03": 18,
+   "peak_window": [
+    71,
+    80
+   ],
+   "peak_rollout_acc": 0.3921875,
+   "first_window_acc": 0.20156249999999998,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P05J7-s303",
+   "cell": "P05J7",
+   "T": 250,
+   "t03": 46,
+   "peak_window": [
+    121,
+    130
+   ],
+   "peak_rollout_acc": 0.5,
+   "first_window_acc": 0.27656250000000004,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P05J7-s304",
+   "cell": "P05J7",
+   "T": 250,
+   "t03": 45,
+   "peak_window": [
+    31,
+    40
+   ],
+   "peak_rollout_acc": 0.47968750000000004,
+   "first_window_acc": 0.19062500000000004,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": false
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P15J3-s301",
+   "cell": "P15J3",
+   "T": 150,
+   "t03": 19,
+   "peak_window": [
+    41,
+    50
+   ],
+   "peak_rollout_acc": 0.7546875,
+   "first_window_acc": 0.503125,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P15J3-s302",
+   "cell": "P15J3",
+   "T": 150,
+   "t03": 23,
+   "peak_window": [
+    111,
+    120
+   ],
+   "peak_rollout_acc": 0.753125,
+   "first_window_acc": 0.4625,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P15J3-s303",
+   "cell": "P15J3",
+   "T": 150,
+   "t03": 31,
+   "peak_window": [
+    81,
+    90
+   ],
+   "peak_rollout_acc": 0.81875,
+   "first_window_acc": 0.5875,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P15J3-s304",
+   "cell": "P15J3",
+   "T": 150,
+   "t03": 19,
+   "peak_window": [
+    41,
+    50
+   ],
+   "peak_rollout_acc": 0.759375,
+   "first_window_acc": 0.484375,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P15J7-s303",
+   "cell": "P15J7",
+   "T": 150,
+   "t03": 42,
+   "peak_window": [
+    51,
+    60
+   ],
+   "peak_rollout_acc": 0.7984375,
+   "first_window_acc": 0.5546875,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261009-gpu-server-2-e39-P15J7-s304",
+   "cell": "P15J7",
+   "T": 150,
+   "t03": 52,
+   "peak_window": [
+    101,
+    110
+   ],
+   "peak_rollout_acc": 0.784375,
+   "first_window_acc": 0.459375,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261010-gpu-server-2-e41-P05JL-s301",
+   "cell": "P05JL",
+   "T": 200,
+   "t03": 20,
+   "peak_window": [
+    11,
+    20
+   ],
+   "peak_rollout_acc": 0.2796875,
+   "first_window_acc": 0.20156249999999998,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261010-gpu-server-2-e41-P05JL-s302",
+   "cell": "P05JL",
+   "T": 200,
+   "t03": 15,
+   "peak_window": [
+    101,
+    110
+   ],
+   "peak_rollout_acc": 0.3265625,
+   "first_window_acc": 0.2515625,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261010-gpu-server-2-e41-P05JL-s303",
+   "cell": "P05JL",
+   "T": 200,
+   "t03": 17,
+   "peak_window": [
+    21,
+    30
+   ],
+   "peak_rollout_acc": 0.3421875,
+   "first_window_acc": 0.26875000000000004,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261010-gpu-server-2-e41-P05JL-s304",
+   "cell": "P05JL",
+   "T": 200,
+   "t03": 24,
+   "peak_window": [
+    31,
+    40
+   ],
+   "peak_rollout_acc": 0.3515625,
+   "first_window_acc": 0.17656249999999996,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261010-gpu-server-2-e41-P15JL-s301",
+   "cell": "P15JL",
+   "T": 150,
+   "t03": 37,
+   "peak_window": [
+    31,
+    40
+   ],
+   "peak_rollout_acc": 0.603125,
+   "first_window_acc": 0.5171875,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "20261010-gpu-server-2-e41-P15JL-s302",
+   "cell": "P15JL",
+   "T": 150,
+   "t03": 32,
+   "peak_window": [
+    111,
+    120
+   ],
+   "peak_rollout_acc": 0.5640625,
+   "first_window_acc": 0.453125,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-1-P05JO1-s301",
+   "cell": "P05JO1",
+   "T": 200,
+   "t03": 13,
+   "peak_window": [
+    11,
+    20
+   ],
+   "peak_rollout_acc": 0.24062499999999998,
+   "first_window_acc": 0.2265625,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-1-P05JO1-s302",
+   "cell": "P05JO1",
+   "T": 200,
+   "t03": 15,
+   "peak_window": [
+    1,
+    10
+   ],
+   "peak_rollout_acc": 0.21250000000000002,
+   "first_window_acc": 0.21250000000000002,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": false
+  },
+  {
+   "run_id": "exp046-gpu-server-1-P05JO1-s303",
+   "cell": "P05JO1",
+   "T": 200,
+   "t03": 10,
+   "peak_window": [
+    1,
+    10
+   ],
+   "peak_rollout_acc": 0.271875,
+   "first_window_acc": 0.271875,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-1-P05JO1-s304",
+   "cell": "P05JO1",
+   "T": 200,
+   "t03": 14,
+   "peak_window": [
+    11,
+    20
+   ],
+   "peak_rollout_acc": 0.19218749999999996,
+   "first_window_acc": 0.1875,
+   "t03_before_peak_window_start": false,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-1-P05JO7-s301",
+   "cell": "P05JO7",
+   "T": 200,
+   "t03": 18,
+   "peak_window": [
+    111,
+    120
+   ],
+   "peak_rollout_acc": 0.384375,
+   "first_window_acc": 0.19843750000000004,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-1-P05JO7-s302",
+   "cell": "P05JO7",
+   "T": 200,
+   "t03": 15,
+   "peak_window": [
+    31,
+    40
+   ],
+   "peak_rollout_acc": 0.3265625,
+   "first_window_acc": 0.22499999999999998,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-1-P05JO7-s303",
+   "cell": "P05JO7",
+   "T": 200,
+   "t03": 19,
+   "peak_window": [
+    21,
+    30
+   ],
+   "peak_rollout_acc": 0.39531249999999996,
+   "first_window_acc": 0.2875,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-1-P05JO7-s304",
+   "cell": "P05JO7",
+   "T": 200,
+   "t03": 17,
+   "peak_window": [
+    31,
+    40
+   ],
+   "peak_rollout_acc": 0.4140625,
+   "first_window_acc": 0.22499999999999998,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-2-P05JL8-s301",
+   "cell": "P05JL8",
+   "T": 200,
+   "t03": 23,
+   "peak_window": [
+    111,
+    120
+   ],
+   "peak_rollout_acc": 0.4921875,
+   "first_window_acc": 0.21406250000000004,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-2-P05JL8-s302",
+   "cell": "P05JL8",
+   "T": 200,
+   "t03": 25,
+   "peak_window": [
+    111,
+    120
+   ],
+   "peak_rollout_acc": 0.4859375,
+   "first_window_acc": 0.19999999999999996,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-2-P05JL8-s303",
+   "cell": "P05JL8",
+   "T": 200,
+   "t03": 22,
+   "peak_window": [
+    71,
+    80
+   ],
+   "peak_rollout_acc": 0.4828125,
+   "first_window_acc": 0.2578125,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  },
+  {
+   "run_id": "exp046-gpu-server-2-P05JL8-s304",
+   "cell": "P05JL8",
+   "T": 200,
+   "t03": 22,
+   "peak_window": [
+    151,
+    160
+   ],
+   "peak_rollout_acc": 0.459375,
+   "first_window_acc": 0.19999999999999996,
+   "t03_before_peak_window_start": true,
+   "t03_le_peak_window_end": true
+  }
+ ]
+}

@@ -1,0 +1,205 @@
+{
+ "experiment": "EXP-047",
+ "written": "261010",
+ "spec_sha256": "45513193ec9778591359a61b95b78ae482a968e93621a412621b16fafc0c5b20",
+ "selection_rule": "SPEC section 7 (S = mean of sign-adjusted 8-cell Spearman on O1, O2; qualified if both > 0 and leave-family-out JL MAE on O1 < best of B1-B3)",
+ "final_predictor": "P1_calib_slope",
+ "n": "4 judges (J15, J3, J7, JL) x 2 policies (P05, P15) = 8 cells; screening only, candidates defined after EXP-041 outcomes were known",
+ "code": {
+  "predictors47.py": {
+   "path": "EXP-047/code/predictors47.py",
+   "sha256": "1b1c761cb6cad4183f7027ed3d897f6630a9aeba7cb30996fc5d71a3ccfd5fe2"
+  },
+  "analysis47.py": {
+   "path": "EXP-047/code/analysis47.py",
+   "sha256": "b68aa2ddb941503a320a19a0d0714dfc9df70d005bdc564225221b20ae73e414"
+  },
+  "common.py": {
+   "path": "EXP-047/code/common.py",
+   "sha256": "69ca8ff0e0efcee19f4d7ff5d2599e1e06893277c4c09a40bc30484c62cbd1d5"
+  },
+  "stats.py": {
+   "path": "EXP-047/code/stats.py",
+   "sha256": "b05832f9b390940f837748bf67e0a567931eb231c44003f1349929ed6335734b"
+  }
+ },
+ "predictors_json_sha256": "4ff99e804a5be853be83b41bb1eddcb07277032e9d8d5da6c42c6983942c0ae7",
+ "training_cells": {
+  "P05J15": {
+   "x": {
+    "P1_calib_slope": 1.0780157492751545,
+    "B1_auc": 0.7402290655339806,
+    "B2_fpr0": 0.44902912621359226,
+    "B3_risk": 0.361328125
+   },
+   "O1": 0.9750801474799269,
+   "O2": 2.6364997669590284
+  },
+  "P15J15": {
+   "x": {
+    "P1_calib_slope": 0.8513802211934797,
+    "B1_auc": 0.6770691384299735,
+    "B2_fpr0": 0.5553505535055351,
+    "B3_risk": 0.2939453125
+   },
+   "O1": 0.9650426842016373,
+   "O2": 2.833213350137533
+  },
+  "P05J3": {
+   "x": {
+    "P1_calib_slope": 0.17219163004668614,
+    "B1_auc": 0.8444584344660194,
+    "B2_fpr0": 0.2651699029126214,
+    "B3_risk": 0.21337890625000003
+   },
+   "O1": 0.8156723735045456,
+   "O2": 2.8583081895487297
+  },
+  "P15J3": {
+   "x": {
+    "P1_calib_slope": 0.1565213241993479,
+    "B1_auc": 0.8084994296519729,
+    "B2_fpr0": 0.35885608856088563,
+    "B3_risk": 0.18994140625
+   },
+   "O1": 0.6542229165741082,
+   "O2": 3.114589815769292
+  },
+  "P05J7": {
+   "x": {
+    "P1_calib_slope": 0.11166041200266234,
+    "B1_auc": 0.8847724514563107,
+    "B2_fpr0": 0.16080097087378642,
+    "B3_risk": 0.12939453125
+   },
+   "O1": 0.3738218846713247,
+   "O2": 3.900212349618074
+  },
+  "P15J7": {
+   "x": {
+    "P1_calib_slope": 0.10773155361333615,
+    "B1_auc": 0.8734779554745755,
+    "B2_fpr0": 0.2177121771217712,
+    "B3_risk": 0.115234375
+   },
+   "O1": 0.4136100318120589,
+   "O2": 3.802287006377698
+  },
+  "P05JL": {
+   "x": {
+    "P1_calib_slope": 0.7447651168585052,
+    "B1_auc": 0.7615814623786408,
+    "B2_fpr0": 0.4496359223300971,
+    "B3_risk": 0.36181640625
+   },
+   "O1": 0.8340938440332688,
+   "O2": 2.9287623456828498
+  },
+  "P15JL": {
+   "x": {
+    "P1_calib_slope": 0.6076735081035216,
+    "B1_auc": 0.6972662530048537,
+    "B2_fpr0": 0.5387453874538746,
+    "B3_risk": 0.28515625
+   },
+   "O1": 0.8015610259445503,
+   "O2": 3.538326934658972
+  }
+ },
+ "predictor": {
+  "name": "P1_calib_slope",
+  "expected_sign": 1,
+  "fit": {
+   "O1": {
+    "outcome": "H_bar plateau h, steps 101-150, seed mean",
+    "model": "outcome = a + b * predictor + c * [policy == P15]",
+    "a": 0.49081426379490073,
+    "b": 0.49150053171936614,
+    "c": 0.006043372410711332,
+    "resid_sd": 0.1532150288143546,
+    "df": 5
+   },
+   "O2": {
+    "outcome": "ln t_half(0.3), AFT cell mean mu (analyze41 onset thr 0.3 + AFT, sigma prior)",
+    "model": "outcome = a + b * predictor + c * [policy == P15]",
+    "a": 3.489648445139821,
+    "b": -0.7760303764364195,
+    "c": 0.1667904003537257,
+    "resid_sd": 0.4186239372470583,
+    "df": 5
+   }
+  },
+  "definition": "SPEC section 4.2; computed by predictors47.py on d8(P) step-0 samples"
+ },
+ "baselines": {
+  "B1_auc": {
+   "expected_sign": -1,
+   "fit": {
+    "O1": {
+     "outcome": "H_bar plateau h, steps 101-150, seed mean",
+     "model": "outcome = a + b * predictor + c * [policy == P15]",
+     "a": 2.9508195289541512,
+     "b": -2.7250068131058947,
+     "c": -0.1600920795429777,
+     "resid_sd": 0.11942048619789454,
+     "df": 5
+    },
+    "O2": {
+     "outcome": "ln t_half(0.3), AFT cell mean mu (analyze41 onset thr 0.3 + AFT, sigma prior)",
+     "model": "outcome = a + b * predictor + c * [policy == P15]",
+     "a": -0.22256952899621113,
+     "b": 4.089721880757215,
+     "c": 0.41980649654686136,
+     "resid_sd": 0.40809868070114874,
+     "df": 5
+    }
+   }
+  },
+  "B2_fpr0": {
+   "expected_sign": 1,
+   "fit": {
+    "O1": {
+     "outcome": "H_bar plateau h, steps 101-150, seed mean",
+     "model": "outcome = a + b * predictor + c * [policy == P15]",
+     "a": 0.2590439110472666,
+     "b": 1.4815335839963355,
+     "c": -0.16922102884438153,
+     "resid_sd": 0.11334457209802777,
+     "df": 5
+    },
+    "O2": {
+     "outcome": "ln t_half(0.3), AFT cell mean mu (analyze41 onset thr 0.3 + AFT, sigma prior)",
+     "model": "outcome = a + b * predictor + c * [policy == P15]",
+     "a": 3.847398340646565,
+     "b": -2.3144553602205504,
+     "c": 0.4413753681371428,
+     "resid_sd": 0.3897914395477578,
+     "df": 5
+    }
+   }
+  },
+  "B3_risk": {
+   "expected_sign": 1,
+   "fit": {
+    "O1": {
+     "outcome": "H_bar plateau h, steps 101-150, seed mean",
+     "model": "outcome = a + b * predictor + c * [policy == P15]",
+     "a": 0.16263786421869666,
+     "b": 2.2029057222554487,
+     "c": 0.05897639526246087,
+     "resid_sd": 0.11876910838715977,
+     "df": 5
+    },
+    "O2": {
+     "outcome": "ln t_half(0.3), AFT cell mean mu (analyze41 onset thr 0.3 + AFT, sigma prior)",
+     "model": "outcome = a + b * predictor + c * [policy == P15]",
+     "a": 4.051817824389774,
+     "b": -3.643327872879923,
+     "c": 0.07571452580624692,
+     "resid_sd": 0.37077469892333953,
+     "df": 5
+    }
+   }
+  }
+ }
+}
