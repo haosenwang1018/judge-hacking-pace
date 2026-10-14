@@ -1,15 +1,24 @@
 # Who Sets the Pace of Judge Hacking? Judge Capability versus the Policy–Judge Gap
 
-Code, per-step logs, analysis scripts and read answer samples for the paper of the same title.
+Code, per-step logs, analysis scripts and read answer samples for the paper of the same title:
+Haosen Wang, arXiv:2610.15778 (v1, 11 Oct 2026), https://arxiv.org/abs/2610.15778.
+Project page: `docs/index.html`.
 
 **Summary.** We train small Qwen2.5 policies (0.5B and 1.5B, SFT on GSM8K) with GRPO against a frozen,
 reference-free LLM judge, and measure how fast and how deeply the judge is fooled (the fraction *h* of wrong
 answers that the judge accepts). We cross policy size with judge size and family (Qwen2.5 1.5B/3B/7B,
-Llama-3.2-3B, Llama-3.1-8B, OLMo-2 1B/7B). Onset and plateau cluster by judge, not by the policy–judge
-capability gap: equal-gap pairs differ strongly, and within a family the larger judge is fooled less deeply.
-Judge-RL did not detectably raise held-out accuracy. A step-0 predictor selected and hash-locked on screening
-judges was not better than step-0 AUC in a pre-registered blind test on three held-out judges; three cells cannot separate the two.
-The study ran in five pre-registered stages (38 GRPO runs, about 57 A100-hours).
+Llama-3.2-3B, Llama-3.1-8B, OLMo-2 1B/7B), and add one judge smaller than the 1.5B policy (Qwen3-0.6B).
+In all 12 (policy, judge) cells, the seed-mean gain in held-out greedy accuracy never exceeded 0.04. A
+gold-reward control with the same recipe raised the 1.5B policy's greedy accuracy by +0.054 [0.013, 0.096];
+for the 0.5B policy, gold reward also gave no detectable gain. The depth of judge hacking (the plateau)
+tracks the judge: it correlates with judge AUC (Spearman −0.69 [−0.94, −0.14] over 12 cells), and within a
+family the larger judge is fooled less deeply. For the pace (onset), two pre-specified pairs contradict the
+gap account, but with 12 cells we cannot formally separate judge AUC from the gap for either endpoint. A
+step-0 predictor selected and hash-locked on screening judges did not beat step-0 AUC in a pre-registered
+blind test on three held-out judges; three cells cannot separate the two.
+The paper reports seven pre-registered stages (42 GRPO runs against judges plus 4 gold-reward runs, about
+67 A100-hours). **This repository currently holds stages 1–5** (38 GRPO runs, about 57 A100-hours); the
+code, logs and read answers of stages 6 and 7 are not yet included (see "Stages").
 
 ## Repository layout
 
@@ -22,11 +31,14 @@ results/<stage>/     summaries, analysis JSON, per-run compact logs (compact/), 
 results/paper/       outputs of code/paper/analysis (all figures and paper tables are built from these)
 data/EXP-046/        step-0 samples (256 problems x 8 per policy) and judge scores used for step-0 predictors
 data/EXP-034/        model file manifests (HF API listings used to verify weight hashes)
-data/answer_samples/ the 520 answers read for the paper (see below)
+data/answer_samples/ 520 of the answers read for the paper (stages 1–5; see below)
+docs/                project page (GitHub Pages) with the figures of arXiv v1
+paper/               the paper as published on arXiv
 tools/make_workdir.sh  rebuilds the original directory layout with symlinks so the scripts run unchanged
 ```
 
-`paper/` will be added after the arXiv release.
+`paper/judge-hacking-pace-arxiv-v1.pdf` is arXiv:2610.15778v1 as served by arXiv
+(sha256 `01ca5f636fab4ba398b66d9f6014ae21a94e4b8f4806ef5f8447464185882e44`).
 
 **Language note.** `SPEC.md`, `PROCESS.md` and `results/*/SUMMARY.md` are the original pre-registration
 documents and run logs. They are written partly in Chinese and are kept as they were (only redacted, see
@@ -43,12 +55,9 @@ Internal stage IDs (`EXP-0NN`) are used as directory names because the documents
 | Stage 3 | `EXP-041` | Llama-3.2-3B judge, plateau endpoint | 6 | `57483b3b11bd4bbc1c9590b1c43e583571d4f7c477228adcc8cf18dc7eca5b15` |
 | Stage 4 | `EXP-047` | screening of step-0 predictors (judge forward passes only, no RL) | 0 | `45513193ec9778591359a61b95b78ae482a968e93621a412621b16fafc0c5b20`; locked predictor `results/EXP-047/FINAL_PREDICTOR.json` sha256 `8c1eb85a2e601c8ed563ad70824b4291dec3de9929ec0d50c225ba750d138af1` |
 | Stage 5 | `EXP-046` | blind test on held-out judges (Llama-3.1-8B, OLMo-2 1B/7B; Llama-3.2-1B failed the gate) | 12 | `e67f105ca25aad7f5540e751b1d192858a4887cad34fc6bab9a5be4187c3282b` |
+| Stage 6 | not yet included | Qwen3-0.6B judge (smaller than the policy) with P1.5, and a sampling-sharpening check without training | 4 | `1161ccdf0afc54373a1f65472dd2fb5a2a5f69007d1471e1aad5cafe4daa1477` (from the paper, App. A) |
+| Stage 7 | not yet included | gold-reward control (gold label as reward, 2 seeds and 150 steps per policy), and a sharpening check of P0.5×Q7 | 4 | `91a7f9314aaaa92ab06698cacef09893fc124475a16822acf561214a1e9cce14` (from the paper, App. A) |
 | Post-hoc | `paper` | gold accuracy, capability gap, onset vs rollout peak, parser audit (no new runs) | 0 | — |
-
-Not reported in the paper, included for completeness:
-
-| Directory | What it is | SPEC sha256 recorded |
-|---|---|---|
 
 **Hash note.** The hashes above are of the unredacted originals. The copies in `specs/` were redacted for
 anonymous review (host names, local paths), so their sha256 differs. The unredacted files will be released
@@ -64,15 +73,19 @@ A cell is policy x judge, e.g. `P05JL8`. Run IDs: `<date>-<host>-e<stage>-<cell>
 
 ## Map from the paper to files
 
-| Paper item | Script | Inputs / outputs |
+Figure and table numbers follow arXiv v1. Figures 1–3 and Tables 3–4 of v1 also include the stage-6 cell
+(Qw3-0.6), and Table 7 and Section 3 include stage 7; those data and the updated figure scripts are not yet in
+this repository, so the scripts here draw the stage 1–5 cells only. Figures 4, 5 and 6 are unchanged.
+
+| Paper item (arXiv v1) | Script | Inputs / outputs |
 |---|---|---|
-| Fig. 1 (onset vs step-0 capability gap), Fig. 5 (fooled fraction curves) | `code/paper/figures/make_fig1_gap.py` | `results/paper/gap261011.json`, `results/EXP-046/analysis46.json`, `results/EXP-041/static_lenient.json`, `results/EXP-039/compact/`, `results/EXP-041/compact/` |
-| Table 1 (pre-specified pairs), Sec. 4, Table of contrasts | `code/paper/analysis/gap261011.py`, `extra261011.py` | `results/paper/gap261011.json`, `extra261011.json` |
-| Sec. 3, Fig. 3 (held-out gold accuracy), gold table | `code/paper/analysis/extract_remote.py` (run on the servers over saved greedy eval outputs) → `gold261011.py` → `code/paper/figures/make_fig3_gold.py` | `results/paper/evals_lenient.json` → `gold261011.json` |
-| Fig. 4 (training-rollout accuracy) | `code/paper/figures/make_fig4_rollout.py` | `gold261011.json`, `analysis46.json` |
+| Fig. 1 (onset vs step-0 capability gap), Fig. 4 (fooled fraction curves) | `code/paper/figures/make_fig1_gap.py` (writes `fig1_gap` and `fig5_curves`) | `results/paper/gap261011.json`, `results/EXP-046/analysis46.json`, `results/EXP-041/static_lenient.json`, `results/EXP-039/compact/`, `results/EXP-041/compact/` |
+| Table 2 (pre-specified pairs), Sec. 4, Table 5 (contrasts) | `code/paper/analysis/gap261011.py`, `extra261011.py` | `results/paper/gap261011.json`, `extra261011.json` |
+| Sec. 3, Fig. 2 (held-out gold accuracy), Table 3 (gold accuracy per cell) | `code/paper/analysis/extract_remote.py` (run on the servers over saved greedy eval outputs) → `gold261011.py` → `code/paper/figures/make_fig3_gold.py` | `results/paper/evals_lenient.json` → `gold261011.json` |
+| Fig. 3 (training-rollout accuracy) | `code/paper/figures/make_fig4_rollout.py` | `gold261011.json`, `analysis46.json` |
 | Onset vs rollout-peak count | `code/paper/analysis/onset_peak261011.py` | `results/paper/onset_peak261011.json` |
-| Sec. 5, Fig. 2 (blind test of step-0 predictors) | `code/EXP-047/predictors47.py`, `analysis47.py`; `code/EXP-046/analysis46.py`; `code/paper/figures/make_fig2_blind.py` | `results/EXP-047/{predictors47,analysis47,FINAL_PREDICTOR}.json`, `results/EXP-046/{analysis46,predictors46}.json` |
-| Sec. 5.1 (judge families), all-cells table, 38-run AFT fit | `code/EXP-046/analysis46.py` (AFT and stats code in `stats.py`); `desc46.py` (`t_half46.json`) | `results/EXP-046/analysis46.json`, `t_half46.json`, `results/EXP-04*/static_lenient.json` |
+| Sec. 5, Fig. 5 (blind test of step-0 predictors) | `code/EXP-047/predictors47.py`, `analysis47.py`; `code/EXP-046/analysis46.py`; `code/paper/figures/make_fig2_blind.py` | `results/EXP-047/{predictors47,analysis47,FINAL_PREDICTOR}.json`, `results/EXP-046/{analysis46,predictors46}.json` |
+| Sec. 5.1 (judge families), Table 4 (all cells), 38-run AFT fit | `code/EXP-046/analysis46.py` (AFT and stats code in `stats.py`); `desc46.py` (`t_half46.json`) | `results/EXP-046/analysis46.json`, `t_half46.json`, `results/EXP-04*/static_lenient.json` |
 | Stage verdicts (App. A) | `code/EXP-034/analyze34.py`, `code/EXP-039/analyze39.py`, `code/EXP-041/analyze41.py` | `results/EXP-034/analysis_stage1.json`, `results/EXP-039/analysis39.json`, `results/EXP-041/analysis41.json` |
 | Offline transfer to Llama | `code/EXP-039/llama39.py` | `results/EXP-039/llama_rescore.json` |
 | Format drift | no saved script (computed inline from the compact logs during stage 3; see `specs/EXP-041/PROCESS.md`) | `results/EXP-041/format_drift41.json` |
@@ -82,7 +95,8 @@ A cell is policy x judge, e.g. `P05JL8`. Run IDs: `<date>-<host>-e<stage>-<cell>
 
 ## Answer samples
 
-`data/answer_samples/answer_samples.json` holds the 520 answers read for the paper:
+`data/answer_samples/answer_samples.json` holds 520 of the answers read for the paper (stages 1–5; the 20
+fooled answers read for the stage-6 cell are not yet included):
 
 - `set = "parser_audit"` (300): 50 per cell for P05J7, P15J7, P05JL, P15JL, P05JL8, P05JO7. Lenient-wrong
   training rollouts with `G_cal >= tau` in steps 101–150, pooled over seeds, sampled with `random.Random(0)`.
@@ -146,8 +160,9 @@ training rollout), greedy `eval_outputs_step*.jsonl`, and stdout logs.
 ## Compute
 
 A100-hours = wall-clock hours x GPUs held, including failed launches. Stage 1: 13.45; stage 2: 22.9;
-stage 3: 8.55; stage 4: 0.44; stage 5: about 11.5. Total: about 57 A100-hours. The post-hoc analyses used
-no GPU.
+stage 3: 8.55; stage 4: 0.44; stage 5: about 11.5 (stages 1–5, the runs in this repository: about 57
+A100-hours). Stage 6: about 5.3; stage 7: about 5.3. Total: about 67 A100-hours. Apart from stages 6 and 7,
+the post-hoc analyses and the revision used no GPU.
 
 ## Licenses
 
@@ -166,6 +181,7 @@ no GPU.
 | Llama-3.2-3B-Instruct, Llama-3.2-1B-Instruct | judges | Llama 3.2 Community License (1B: per the stage-5 SPEC; license file not re-read) |
 | Llama-3.1-8B-Instruct | judge | Llama 3.1 Community License |
 | OLMo-2-0425-1B-Instruct, OLMo-2-1124-7B-Instruct | judges | Apache-2.0 (Hugging Face model card) |
+| Qwen3-0.6B (revision `c1899de2`) | judge (stage 6; not yet in this repository) | Apache-2.0 (per the paper, App. B) |
 
 ## Anonymization
 
@@ -177,4 +193,4 @@ the same way, so all files stay consistent. Some SPEC/PROCESS documents mention 
 ## AI use
 
 The code and the documents in this repository were written with heavy use of Claude (Anthropic) agents;
-see the AI use disclosure in the paper.
+see the AI use disclosure in the paper (arXiv:2610.15778, after the Conclusion).

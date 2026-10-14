@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who Sets the Pace of Judge Hacking?</title>
+<meta name="description" content="GRPO against frozen LLM judges: does the judge or the policy–judge gap set how fast the judge is fooled? Haosen Wang.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: one centered reading column (~44rem); figures may widen to ~60rem; figure panels stay paper-white in both themes. */
+:root {
+  --bg: #fbfbfa;
+  --surface: #f1f2f5;
+  --fg: #1d2230;
+  --muted: #5b6273;
+  --rule: #d9dce3;
+  --accent: #1f4e8c;      /* Qwen blue from the figures */
+  --accent-2: #b8423f;    /* Llama red from the figures */
+  --hl: #fbe9c7;          /* pair highlight */
+  --hl-2: #dce8f7;
+  --paper: #ffffff;
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --col: 44rem;
+  --wide: 60rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --surface: #1e222b; --fg: #e4e6ec; --muted: #a2a8b6; --rule: #343a46;
+    --accent: #8db4ea; --accent-2: #ec8f8b; --hl: #4a3b1c; --hl-2: #1f3350; --paper: #ffffff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d; --surface: #1e222b; --fg: #e4e6ec; --muted: #a2a8b6; --rule: #343a46;
+  --accent: #8db4ea; --accent-2: #ec8f8b; --hl: #4a3b1c; --hl-2: #1f3350; --paper: #ffffff;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.62;
+  padding-inline: 16px; padding-block: 0 3rem;
+}
+img, svg, video { max-width: 100%; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+main > section, header.hero, footer { max-width: var(--col); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.2; }
+h2 { font-size: 1.55rem; font-weight: 700; margin: 3.2rem 0 0.9rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
+h3 { font-size: 1.15rem; font-weight: 600; margin: 2.4rem 0 0.25rem; }
+p { margin: 0 0 0.9rem; }
+.ui { font-family: var(--font-ui); }
+.muted { color: var(--muted); }
+code, .mono { font-family: var(--font-mono); font-size: 0.88em; }
+sub { font-size: 0.72em; }
+
+/* Hero */
+.hero { text-align: center; padding-block: 3.2rem 1rem; }
+.hero h1 { font-size: clamp(1.9rem, 5.2vw, 2.85rem); font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+.hero .sub { font-family: var(--font-display); font-size: clamp(1.15rem, 3vw, 1.45rem); color: var(--muted); margin: 0.35rem 0 1.1rem; }
+.hero .pos { max-width: 38rem; margin: 0 auto 1.1rem; }
+.hero .author { font-family: var(--font-ui); font-size: 1.05rem; font-weight: 500; margin-bottom: 1.2rem; }
+.links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin: 0; padding: 0; list-style: none; }
+.links a {
+  display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-ui); font-size: 0.92rem; font-weight: 500;
+  text-decoration: none; color: var(--fg); background: var(--surface); border: 1px solid var(--rule);
+  padding: 0.42rem 0.95rem; border-radius: 999px;
+}
+.links a:hover { border-color: var(--accent); color: var(--accent); }
+.links a[aria-disabled="true"] { color: var(--muted); cursor: default; }
+.links svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+/* Figures */
+figure { margin: 1.4rem 0 1.6rem; }
+figure.wide { max-width: var(--wide); margin-inline: auto; width: min(var(--wide), calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
+.panel { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 0.8rem; }
+.panel img { display: block; width: 100%; height: auto; margin: 0 auto; }
+.panel.narrow img { max-width: 34rem; }
+figcaption { font-family: var(--font-ui); font-size: 0.86rem; line-height: 1.5; color: var(--muted); margin-top: 0.6rem; max-width: var(--col); margin-inline: auto; }
+figcaption b { color: var(--fg); font-weight: 600; }
+video { display: block; width: 100%; height: auto; background: var(--paper); border-radius: 6px; border: 1px solid var(--rule); }
+
+/* Finding blocks */
+.finding .answer { font-size: 1.12rem; font-weight: 600; margin: 0 0 0.6rem; }
+.kicker { font-family: var(--font-ui); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-2); margin-top: 2.6rem; }
+.kicker + h3 { margin-top: 0.2rem; }
+
+/* Two accounts */
+.accounts { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 0.9rem; margin: 1rem 0 1.4rem; }
+.account { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 0.95rem 1.05rem; min-width: 0; }
+.account h4 { font-family: var(--font-ui); font-size: 0.95rem; margin: 0 0 0.35rem; }
+.account p { font-size: 0.97rem; margin: 0; }
+
+/* Design grid */
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table.grid { border-collapse: separate; border-spacing: 4px; font-family: var(--font-ui); font-size: 0.86rem; margin: 0 auto; font-variant-numeric: tabular-nums; }
+table.grid th { font-weight: 600; padding: 0.3rem 0.4rem; text-align: center; white-space: nowrap; }
+table.grid th.row { text-align: right; }
+table.grid td { width: 3.6rem; height: 2.6rem; text-align: center; border-radius: 4px; background: var(--surface); border: 1px solid var(--rule); position: relative; }
+table.grid td.empty { background: transparent; border: 1px dashed var(--rule); color: var(--muted); }
+table.grid td.p1 { background: var(--hl); border-color: var(--accent-2); }
+table.grid td.p2 { background: var(--hl-2); border-color: var(--accent); }
+table.grid td .tag { display: block; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.04em; }
+table.grid th .fam { display: block; font-weight: 400; font-size: 0.72rem; color: var(--muted); }
+table.grid .heldout { font-style: italic; }
+.legend { font-family: var(--font-ui); font-size: 0.86rem; color: var(--muted); margin-top: 0.8rem; }
+.legend dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.15rem 0.8rem; margin: 0.5rem 0 0; }
+.legend dt { font-weight: 600; color: var(--fg); }
+.legend dd { margin: 0; min-width: 0; }
+
+/* Example answer */
+.example { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.1rem; margin: 1.2rem 0; }
+.example .meta { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
+.example .meta .acc { color: var(--accent-2); }
+.example .q { font-size: 0.97rem; margin-bottom: 0.6rem; }
+.example pre { font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.55; white-space: pre-wrap; word-break: break-word; margin: 0; padding: 0.7rem 0.8rem; background: var(--bg); border-radius: 4px; border: 1px solid var(--rule); }
+.example mark { background: var(--hl); color: inherit; padding: 0 2px; border-radius: 2px; }
+
+/* Bar charts */
+.bars { font-family: var(--font-ui); font-size: 0.86rem; display: grid; gap: 0.35rem; margin: 0.8rem 0 0.3rem; font-variant-numeric: tabular-nums; }
+.bar { display: grid; grid-template-columns: 9.5rem 1fr 2.6rem; align-items: center; gap: 0.6rem; }
+.bar .lab { text-align: right; min-width: 0; }
+.bar .track { height: 0.95rem; background: transparent; border-left: 1px solid var(--muted); }
+.bar .fill { height: 100%; background: var(--accent); border-radius: 0 2px 2px 0; }
+.bar .fill.alt { background: var(--accent-2); }
+.bar .val { font-weight: 600; }
+@media (max-width: 520px) { .bar { grid-template-columns: 7rem 1fr 2.2rem; } }
+
+/* Setup lists */
+dl.spec { display: grid; grid-template-columns: 9rem 1fr; gap: 0.5rem 1rem; margin: 0.8rem 0 1rem; }
+dl.spec dt { font-family: var(--font-ui); font-size: 0.9rem; font-weight: 600; padding-top: 0.1rem; }
+dl.spec dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { dl.spec { grid-template-columns: 1fr; gap: 0.1rem; } dl.spec dd { margin-bottom: 0.6rem; } }
+.formula { font-family: var(--font-body); font-style: normal; background: var(--surface); border-radius: 4px; padding: 0.1rem 0.4rem; white-space: nowrap; }
+ol.stages, ul.plain { padding-left: 1.3rem; margin: 0.4rem 0 1rem; }
+ol.stages li, ul.plain li { margin-bottom: 0.3rem; }
+
+/* BibTeX */
+.bib { position: relative; }
+.bib pre { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 0.9rem 1rem; overflow-x: auto; margin: 0; }
+.copy { position: absolute; top: 0.5rem; right: 0.5rem; font-family: var(--font-ui); font-size: 0.78rem; background: var(--bg); color: var(--fg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.2rem 0.55rem; cursor: pointer; }
+
+footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-family: var(--font-ui); font-size: 0.82rem; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Who Sets the Pace of Judge Hacking?</h1>
+  <p class="sub">Judge Capability versus the Policy–Judge Gap</p>
+  <p class="pos">We train small policies with GRPO against frozen LLM judges and ask what decides how fast and how deeply the judge is fooled: the judge itself, or the capability gap between judge and policy.</p>
+  <div class="author">Haosen Wang</div>
+  <ul class="links">
+    <li><a href="https://arxiv.org/abs/2610.15778"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>arXiv</a></li>
+    <li><a href="https://github.com/haosenwang1018/judge-hacking-pace"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>Code</a></li>
+    <li><a href="https://github.com/haosenwang1018/judge-hacking-pace/tree/main/data/answer_samples"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>Data</a></li>
+  </ul>
+</header>
+
+<main>
+<section id="abstract">
+  <h2>Abstract</h2>
+  <p>When a policy is trained with GRPO against a frozen, reference-free LLM judge, the judge accepts more of its answers, but in a post-hoc analysis we detect no gain in held-out greedy accuracy: in all 12 (policy, judge) cells, the seed-mean gain never exceeded 0.04. A gold-reward control with the same recipe raised the 1.5B policy's greedy accuracy by +0.054 [0.013, 0.096], so for this policy the flat accuracy is specific to the judge reward; for the 0.5B policy, gold reward also gave no detectable gain. In the four rising cells we checked, the early rise in training-rollout accuracy is mostly sampling sharpening, as it is under gold reward.</p>
+  <p>We then ask whether the policy–judge gap or the judge sets how far and how fast RL exploits the judge's false positives. We train 0.5B and 1.5B Qwen2.5 policies against four judges at least as large (Qwen2.5-1.5B/3B/7B, Llama-3.2-3B) and the 1.5B policy against one smaller judge (Qwen3-0.6B). The depth of judge hacking (the plateau) tracks the judge: it correlates with judge AUC (Spearman −0.69 [−0.94, −0.14] over 12 cells), and within a family the larger judge is fooled less deeply. For the pace (onset), two pre-specified pairs contradict the gap account (the larger-gap cell was fooled 3.5× sooner at the pre-specified threshold). With 12 cells we cannot formally separate judge AUC from the gap for either endpoint. The smaller judge was not fooled sooner than a judge as large as the policy, though it also differs in family and template.</p>
+  <p>In a blind test on three held-out judges, a hash-locked step-0 predictor did not beat step-0 AUC, but three cells cannot separate them. At 7–8B, judges from three families plateaued at 0.37, 0.67 and 0.85.</p>
+</section>
+
+<section id="question">
+  <h2>The question</h2>
+  <p>A judge that sees a candidate answer scores plausibility, not correctness. RL can exploit the wrong answers that the judge already accepts at step 0. Two accounts predict how fast this happens.</p>
+  <div class="accounts">
+    <div class="account">
+      <h4 class="ui">Gap account</h4>
+      <p>The capability gap between judge and policy sets the pace. A judge that is much stronger than its policy should be fooled later and less deeply.</p>
+    </div>
+    <div class="account">
+      <h4 class="ui">Judge account</h4>
+      <p>The judge itself sets the pace. Cells with the same judge should behave alike, whatever the policy.</p>
+    </div>
+  </div>
+  <p>Only a <em>crossed</em> design separates the two: cells with a similar gap but different judges. We cross two policies with eight judges (12 cells). Each cell below shows the judge-to-policy parameter ratio. Two pairs were specified before stage 2 as descriptive contrasts; in each pair, the first cell has the larger gap.</p>
+
+  <figure>
+    <div class="scroll">
+      <table class="grid" aria-label="Crossed design: policies by judges, with parameter ratios">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Q1.5<span class="fam">Qwen2.5</span></th>
+            <th>Q3<span class="fam">Qwen2.5</span></th>
+            <th>Q7<span class="fam">Qwen2.5</span></th>
+            <th>L3<span class="fam">Llama-3.2</span></th>
+            <th class="heldout">L8<span class="fam">Llama-3.1</span></th>
+            <th class="heldout">O1<span class="fam">OLMo-2</span></th>
+            <th class="heldout">O7<span class="fam">OLMo-2</span></th>
+            <th>Qw3-0.6<span class="fam">Qwen3</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="row">P0.5</th>
+            <td class="p2">3.1<span class="tag">pair 2</span></td>
+            <td class="p1">6.3<span class="tag">pair 1</span></td>
+            <td>15.5</td>
+            <td>6.6</td>
+            <td>16.4</td>
+            <td>3.0</td>
+            <td>14.9</td>
+            <td class="empty">–</td>
+          </tr>
+          <tr>
+            <th class="row">P1.5</th>
+            <td>1.0</td>
+            <td class="p2">2.0<span class="tag">pair 2</span></td>
+            <td class="p1">4.9<span class="tag">pair 1</span></td>
+            <td>2.1</td>
+            <td class="empty">–</td>
+            <td class="empty">–</td>
+            <td class="empty">–</td>
+            <td>0.39</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <dl>
+        <dt>P0.5, P1.5</dt><dd>policies: Qwen2.5-0.5B and -1.5B (base) after SFT on GSM8K</dd>
+        <dt>Q1.5, Q3, Q7</dt><dd>judges: Qwen2.5-1.5B/3B/7B-Instruct</dd>
+        <dt>L3, L8</dt><dd>judges: Llama-3.2-3B-Instruct, Llama-3.1-8B-Instruct</dd>
+        <dt>O1, O7</dt><dd>judges: OLMo-2-0425-1B-Instruct, OLMo-2-1124-7B-Instruct</dd>
+        <dt>Qw3-0.6</dt><dd>judge: Qwen3-0.6B, non-thinking chat template (stage 6, 1.5B policy only)</dd>
+        <dt>P0.5×Q3</dt><dd>a cell: the 0.5B policy trained against the Q3 judge</dd>
+        <dt><i>Italic</i></dt><dd>held-out judges, run only in the blind test</dd>
+      </dl>
+    </div>
+  </figure>
+  <p>In the main design the judges are 1–16× larger than the policy and both policies are weak solvers, so there we test the gap account only where the judge is at least as strong as the policy. One added cell pairs the 1.5B policy with a smaller judge (Qwen3-0.6B). This judge solves GSM8K about as well as the policy and comes from another family, so the cell is not a clean test of a judge weaker than the policy.</p>
+</section>
+
+<section id="findings">
+  <h2>Findings</h2>
+
+  <div class="finding">
+    <div class="kicker">Accuracy</div>
+    <h3>Does RL against the judge help?</h3>
+    <p class="answer">The judge accepts more answers, but held-out greedy accuracy does not detectably rise. A gold-reward control with the same recipe did raise it for the 1.5B policy.</p>
+    <figure class="wide">
+      <div class="panel"><img src="assets/fig3_gold.svg" alt="Three panels: held-out accuracy of the 0.5B and 1.5B policies over GRPO steps stays flat or falls, while judge acceptance of the 0.5B policy's answers rises." loading="lazy"></div>
+      <figcaption><b>Figure 1.</b> The judge accepts more answers while held-out accuracy stays flat or falls. Seed means; 200 held-out problems, greedy decoding, lenient gold label. (a, b) Accuracy of the 0.5B and 1.5B policies; dashed: step 0. (c) Share of the 0.5B policy's held-out answers that the training judge accepts. Acceptance was not logged for Qw3-0.6. The largest seed-mean gain over step 0 was +0.037 (about one binomial standard error at n = 200). We ran no equivalence test, so small gains are not excluded. Acceptance rose in every cell where we logged it (all but stage 6), for example from 0.57 to 0.91 under Q3.</figcaption>
+    </figure>
+    <figure class="wide">
+      <div class="panel"><img src="assets/fig4_rollout.svg" alt="Two panels: training-rollout accuracy per judge rises early and then falls; ticks mark the onset." loading="lazy"></div>
+      <figcaption><b>Figure 2.</b> Training-rollout accuracy rises early in 11 of 12 cells, then falls. Lenient accuracy of training rollouts, 10-step windows, seed mean, for the 0.5B (a) and 1.5B (b) policy. Ticks: onset <i>t</i><sub>0.3</sub> (AFT geometric mean; Qw3-0.6: 42-run fit). Dashed: step-0 greedy held-out accuracy. Step-1 sampled accuracy is lower; a check on step-50 checkpoints of four rising cells shows that the rise there is sampling sharpening, with no detectable change in greedy accuracy.</figcaption>
+    </figure>
+    <p><b>Sampling sharpening.</b> In the four rising cells we checked at step 50, including the largest rise, the rise in training-rollout accuracy is mostly sampling sharpening: held-out temperature-1 accuracy rose, but greedy accuracy did not detectably change. For example, P0.5×Q3 and P1.5×Q3 gained +0.13 [0.09, 0.17] and +0.23 [0.19, 0.27] in temperature-1 accuracy, but only +0.004 [−0.054, 0.062] and +0.035 [−0.024, 0.094] in greedy accuracy. The check covers step 50 only.</p>
+    <p><b>Gold-reward control.</b> We repeated the recipe with the gold label as reward (2 seeds and 150 steps per policy) and measured the step-150 checkpoints on 500 held-out problems. For the 1.5B policy, greedy accuracy rose by +0.054 [0.013, 0.096], so for this policy the flat greedy accuracy under judge reward is specific to the judge reward. For the 0.5B policy, the gain was +0.022 [−0.015, 0.059]: neither judge nor gold reward gave a detectable greedy gain within 150 steps. At step 50, all gold cells also classify as sharpening, so the early rise is a property of this short recipe, not a sign of judge exploitation.</p>
+  </div>
+
+  <div class="finding">
+    <div class="kicker">Main result</div>
+    <h3>Judge or gap?</h3>
+    <p class="answer">The depth of judge hacking (the plateau) tracks the judge. For the pace (onset), the two pre-specified pairs contradict the gap account, but with 12 cells we cannot formally separate judge AUC from the gap for either endpoint.</p>
+    <figure class="wide">
+      <div class="panel narrow"><img src="assets/fig5_curves.svg" alt="Fooled fraction h over GRPO steps for the 0.5B policy under Q1.5, Q3, Q7 and L3; Q7 stays near 0.37 while the others rise above 0.8." loading="lazy"></div>
+      <figcaption><b>Figure 3.</b> Fooled fraction <i>h</i> for the 0.5B policy under the four stage 1–3 judges (seed mean and range). Gray: plateau window, steps 101–150. Dashed: onset thresholds 0.3 and 0.5; 0.5 lies just above the Q7 plateau. Q1.5 and Q7 curves end at step 150, the shortest run in those cells.</figcaption>
+    </figure>
+    <figure>
+      <div class="panel narrow"><img src="assets/fig1_gap.svg" alt="Scatter of onset t0.3 against the step-0 capability gap; cells with similar gaps differ in onset; dashed lines join the two pre-specified pairs." loading="lazy"></div>
+      <figcaption><b>Figure 4.</b> Cells with similar gaps differ in onset. Onset <i>t</i><sub>0.3</sub> against the step-0 capability gap, logit(AUC) − logit(accuracy). Small marks: runs; large: AFT means (circle: 0.5B policy; square: 1.5B; open: held-out judge). Dashed: the pre-specified pairs. Qw3-0.6: judge smaller than the policy (stage 6; 42-run fit). In pair 1, P0.5×Q3 has the larger gap but is fooled 3.5× sooner at the pre-specified <i>h</i> ≥ 0.5 (2.6× at <i>h</i> ≥ 0.3, a version added post hoc) and has a plateau 0.40 higher than P1.5×Q7; pair 2 gives the same sign. Both pairs are descriptive contrasts with 2–4 seeds per cell.</figcaption>
+    </figure>
+    <p><b>Over 12 cells, only the plateau–AUC correlation excludes zero.</b> The Spearman correlation of log-onset <i>t</i><sub>0.3</sub> is 0.15 [−0.52, 0.72] with the capability gap and 0.51 [−0.18, 0.92] with judge AUC alone; for plateau it is −0.30 [−0.80, 0.34] and −0.69 [−0.94, −0.14]. The difference in correlations is −0.38 [−0.95, 0.00] for plateau and 0.36 [0.00, 0.91] for onset. Cells share judges and policies, so these intervals are optimistic.</p>
+    <p><b>A judge smaller than the policy (stage 6).</b> In P1.5×Qw3-0.6 the judge has 0.39 times the policy's parameters and solves 0.585 of the held-out problems (P1.5: 0.61). Compared with P1.5×Q1.5, onset at <i>h</i> ≥ 0.3 was not earlier (18.0 vs. 17.0 steps), and onset at <i>h</i> ≥ 0.5 was if anything later (30.3 vs. 21.0 steps). The plateaus were the same within error (0.980 vs. 0.965), but the control plateau leaves at most 0.035 of room for a deeper course. We see no evidence of a gap effect. The judge differs from the policy in family (Qwen3 vs. Qwen2.5) and in chat template, so this one cell cannot separate judge size from family.</p>
+    <p><b>Policy size under one judge.</b> The pre-registered primary rule found a policy effect only under the 7B judge; at threshold 0.3 that effect is gone, and a pre-registered secondary contrast shows one under the 3B judge instead (the larger policy is fooled later).</p>
+  </div>
+
+  <div class="finding">
+    <div class="kicker">Blind test</div>
+    <h3>Can step 0 predict the plateau?</h3>
+    <p class="answer">A hash-locked step-0 predictor did not beat step-0 AUC on three held-out judges. The test is inconclusive.</p>
+    <figure class="wide">
+      <div class="panel"><img src="assets/fig2_blind.svg" alt="Three panels: plateau against step-0 AUC, plateau against the locked calibration slope, and locked-fit predictions on the held-out judges." loading="lazy"></div>
+      <figcaption><b>Figure 5.</b> 0.5B policy only. Filled: screening judges; open: held-out judges, run blind. Lines join one family by size; bars: seed range. Plateau against (a) step-0 AUC and (b) the locked predictor CS (calibration slope of step-0 correctness on the judge score, log scale). (c) Locked-fit predictions on the held-out judges (triangle: CS, mean absolute error 0.188; circle: AUC, 0.095). CS ordered 2 of 3 held-out pairs, AUC all 3. A random predictor orders 3 cells perfectly with probability 1/6, so three cells cannot separate the two.</figcaption>
+    </figure>
+  </div>
+
+  <div class="finding">
+    <div class="kicker">Judge families</div>
+    <h3>Does judge size set the depth?</h3>
+    <p class="answer">Within a family, the larger judge is fooled less deeply. Across families, judges of similar size plateau at very different levels.</p>
+    <figure>
+      <div class="bars" role="img" aria-label="Plateau of the 0.5B policy: Qwen2.5-7B 0.37, Llama-3.1-8B 0.67, OLMo-2-7B 0.85">
+        <div class="bar"><span class="lab">Qwen2.5-7B (Q7)</span><span class="track"><span class="fill" style="width:37.4%; display:block"></span></span><span class="val">0.37</span></div>
+        <div class="bar"><span class="lab">Llama-3.1-8B (L8)</span><span class="track"><span class="fill" style="width:67.3%; display:block"></span></span><span class="val">0.67</span></div>
+        <div class="bar"><span class="lab">OLMo-2-7B (O7)</span><span class="track"><span class="fill" style="width:85.3%; display:block"></span></span><span class="val">0.85</span></div>
+      </div>
+      <figcaption><b>Figure 6.</b> Plateau <i>H̄</i> (fooled fraction over steps 101–150, seed mean) for the 0.5B policy under three 7–8B judges; the bar axis runs from 0 to 1. Within-family plateau differences, smaller minus larger judge (95% intervals): Qwen 1.5B−3B +0.16 [0.12, 0.20], 3B−7B +0.44 [0.37, 0.51]; Llama 3B−8B +0.16 [0.02, 0.30]; OLMo-2 1B−7B +0.14 [0.00, 0.27]. Within Llama and OLMo-2, size is confounded with release.</figcaption>
+    </figure>
+  </div>
+
+  <div class="finding">
+    <div class="kicker">The hacks</div>
+    <h3>What does a fooled answer look like?</h3>
+    <p class="answer">Ordinary wrong solutions: fluent and confident, with a wrong setup or an arithmetic slip.</p>
+    <div class="example">
+      <div class="meta">P1.5×Q7, training step 57 · reference 41 · model answer 31 · judge score <i>G</i><sub>cal</sub> = 0.82, <span class="acc">accepted</span></div>
+      <div class="q"><i>Question.</i> Randy drew 5 pictures. Peter drew 3 more pictures than Randy. Quincy drew 20 more pictures than Peter. How many pictures did they draw altogether?</div>
+<pre>If Randy drew 5 pictures, then Peter drew 5 + 3 = 8 pictures.
+Quincy drew 8 + 20 = 28 pictures.
+To find the total number of pictures drawn by all of them, we add up the number of pictures each person drew: <mark>5 (Randy) + 8 (Peter) + 28 (Quincy) = 31 pictures.</mark>
+#### 31</pre>
+      <p class="ui muted" style="font-size:0.86rem; margin:0.6rem 0 0">Every step is correct except the last sum (5 + 8 + 28 = 41, not 31). The Qwen2.5-7B judge accepts it.</p>
+    </div>
+
+    <figure>
+      <div class="bars" role="img" aria-label="First-error type counts over 220 fooled answers">
+        <div class="bar"><span class="lab">Wrong setup</span><span class="track"><span class="fill" style="width:100%; display:block"></span></span><span class="val">127</span></div>
+        <div class="bar"><span class="lab">Arithmetic slip</span><span class="track"><span class="fill" style="width:42.5%; display:block"></span></span><span class="val">54</span></div>
+        <div class="bar"><span class="lab">Misread quantity</span><span class="track"><span class="fill" style="width:22.0%; display:block"></span></span><span class="val">28</span></div>
+        <div class="bar"><span class="lab">Correct, parser misread</span><span class="track"><span class="fill" style="width:3.9%; display:block"></span></span><span class="val">5</span></div>
+        <div class="bar"><span class="lab">Reference disputed</span><span class="track"><span class="fill" style="width:3.1%; display:block"></span></span><span class="val">4</span></div>
+        <div class="bar"><span class="lab">Other</span><span class="track"><span class="fill" style="width:1.6%; display:block"></span></span><span class="val">2</span></div>
+      </div>
+      <figcaption><b>Figure 7.</b> First error in reading order of the 220 pre-registered fooled answers (20 per cell, 11 cells). Coded by an LLM agent as one reader; the labels are judgements, not a validated scheme. Wrong setup: the numbers are right but the plan is wrong (wrong operation, missing or extra step, or a different quantity than asked). Correct, parser misread: the answer equals the reference, but the lenient parser reads another number. Reference disputed: the answer follows a plain reading of the problem, but the GSM8K reference differs.</figcaption>
+    </figure>
+
+    <p><b>No length hack.</b> Fooled wrong answers are shorter than non-fooled ones in every cell of stages 1–5, for example 124 vs. 146 tokens under Q3; in the stage-6 cell they are about as long (186 vs. 183 tokens). But the stage-6 judge also accepts unfinished answers: in steps 101–150 it accepted 97% of the policy's lenient-wrong answers that were cut off at 256 tokens.</p>
+    <p><b>Format drift.</b> Under some judges, the policy drops the trained answer format “<code>#### n</code>”. Under L3 it moves to “<code>The answer is: n</code>”; under O7 all four seeds drop the format by steps 51–100. All eight Q3 runs keep it. Under Qw3-0.6, the 1.5B policy drops “<code>####</code>” after step 50 (rollout share 0.73–0.95 in steps 1–50, 0–0.02 in steps 51–100).</p>
+    <figure class="wide">
+      <div class="panel"><img src="assets/fig6_format.svg" alt="Four panels: share of rollouts with #### and mean rollout length over GRPO steps, per judge, for the 0.5B and 1.5B policies." loading="lazy"></div>
+      <figcaption><b>Figure 8.</b> Answer format and length of the training rollouts (the 11 cells of stages 1–5; the figure predates stage 6). Seed mean of 10-step window means. (a, b) Share of rollouts that contain “#### n”, for the 0.5B and 1.5B policy. (c, d) Mean rollout length in tokens. Under Q7 with the 0.5B policy, only 2 of 4 seeds run past step 150; Q1.5 runs end at step 150.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="setup">
+  <h2>Experimental setup</h2>
+  <dl class="spec">
+    <dt>Policies</dt>
+    <dd>Qwen2.5-0.5B and -1.5B (base), after one epoch of SFT on 2,000 GSM8K solutions. Step-0 greedy accuracy on 200 held-out test problems: 0.33 and 0.61.</dd>
+    <dt>Judges</dt>
+    <dd>Main: Qwen2.5-1.5B/3B/7B-Instruct and Llama-3.2-3B-Instruct. Held out: Llama-3.1-8B-Instruct, OLMo-2-0425-1B-Instruct and OLMo-2-1124-7B-Instruct. Smaller judge (stage 6, 1.5B policy only): Qwen3-0.6B in non-thinking mode. The judge sees the problem and the solution, not the reference, and answers “Is the final answer of this solution correct? Answer Yes or No.”</dd>
+    <dt>Reward</dt>
+    <dd>Calibrated judge score <span class="formula"><i>G</i><sub>cal</sub> = σ(<i>aG</i> + <i>b</i>)</span>, with <span class="formula"><i>G</i> = logit(Yes) − logit(No)</span>. The constants <i>a</i> and <i>b</i> are fitted per judge on step-0 samples. No format reward.</dd>
+    <dt>Training</dt>
+    <dd>GRPO on 5,473 GSM8K problems, 8 problems × 8 rollouts per step, learning rate 3×10<sup>−6</sup>, no KL penalty, DAPO token-level loss, temperature 1.0, at most 256 new tokens, 150–250 steps.</dd>
+    <dt>Threshold <i>τ</i></dt>
+    <dd>Per cell, fixed at step 0 so that the judge accepts 80% of correct answers. An answer is accepted when <i>G</i><sub>cal</sub> ≥ <i>τ</i>.</dd>
+    <dt>Fooled fraction <i>h</i></dt>
+    <dd>FPR is the share of wrong answers that the judge accepts; FPR<sub>0</sub> is its step-0 value. <span class="formula"><i>h</i> = (FPR − FPR<sub>0</sub>) / (1 − FPR<sub>0</sub>)</span>, on 5-step windows. Wrong means wrong under a lenient parser (the number after “####”, otherwise the last number).</dd>
+    <dt>Onset, plateau</dt>
+    <dd>Onset <i>t</i><sub>0.5</sub> (<i>t</i><sub>0.3</sub>): the first step with <i>h</i> ≥ 0.5 (0.3) on two consecutive windows. Plateau <i>H̄</i>: <i>h</i> over steps 101–150. Onsets use one censored log-normal accelerated-failure-time (AFT) model over the 38 runs of stages 1–5; the stage-6 cell uses the same model refitted on all 42 runs. Plateaus use Welch intervals over seeds.</dd>
+    <dt>Scale</dt>
+    <dd>42 GRPO runs against judges over 12 cells (2–4 seeds per cell), plus 4 gold-reward runs (stage 7). NVIDIA A100-PCIE-40GB GPUs, about 67 A100-hours in total.</dd>
+  </dl>
+
+  <h3>Pre-registration</h3>
+  <p>The study ran in seven stages. Each stage had a written specification with a recorded sha256 hash before its runs; later changes were written as dated addenda. The paper reports every deviation.</p>
+  <ol class="stages">
+    <li>Q1.5 and Q7 judges, both policies (8 runs).</li>
+    <li>Adds the Q3 judge and more seeds; fixes the lenient label, the onset model and the decision rules (12 runs).</li>
+    <li>A second family: the L3 judge, with the plateau endpoint (6 runs).</li>
+    <li>Screening of step-0 predictors with judge forward passes only (no RL). The selected predictor and its fit were locked by hash.</li>
+    <li>Blind test on held-out judges L8, O1 and O7 with the 0.5B policy (12 runs).</li>
+    <li>A smaller judge, Qw3-0.6, with the 1.5B policy (4 runs), and a sampling-sharpening check without training. Added in revision.</li>
+    <li>A gold-reward control: the same recipe with the gold label as reward, 2 seeds and 150 steps per policy (4 runs), and a sharpening check of P0.5×Q7. Added before submission.</li>
+  </ol>
+  <p>The gold-accuracy analysis, the onset-versus-rollout-peak count, the capability gap, the <i>t</i><sub>0.3</sub>, KL and plateau versions of the two pairs, the parser audit and the 12-cell correlations were added after stage 5. They use only saved logs and generations.</p>
+</section>
+
+<section id="limitations">
+  <h2>Limitations</h2>
+  <ul class="plain">
+    <li>One task (GSM8K), one judge prompt and one training recipe; no KL penalty; single-token judges without chain of thought.</li>
+    <li>Policies of at most 1.5B and judges of at most 8B. Only one judge is smaller than the policy (0.6B vs. 1.5B); it solves about as well (0.585 vs. 0.61) and comes from another family and template, so a judge weaker than the policy is tested only in one confounded cell.</li>
+    <li>2–4 seeds per cell. The predictor test has three held-out cells and one policy.</li>
+    <li>Some choices (screening candidates, the plateau endpoint, the test's pass rule, the step coordinate) were set after some outcomes were known.</li>
+    <li>Gold labels come from parsers: a per-answer check of 300 judge-accepted answers, done by an LLM agent and by the author, found 5.7% parser errors.</li>
+    <li>The gold-reward control has 2 seeds, 150 steps and one learning rate. The 12-cell correlation intervals treat cells as independent.</li>
+  </ul>
+</section>
+
+<section id="resources">
+  <h2>Resources</h2>
+  <ul class="plain">
+    <li><a href="https://arxiv.org/abs/2610.15778">Paper: arXiv:2610.15778</a> (v1, 11 Oct 2026). The v1 PDF is also in the repository: <a href="https://github.com/haosenwang1018/judge-hacking-pace/blob/main/paper/judge-hacking-pace-arxiv-v1.pdf"><code>paper/judge-hacking-pace-arxiv-v1.pdf</code></a>.</li>
+    <li><a href="https://github.com/haosenwang1018/judge-hacking-pace">Code</a>: training, judge scoring, analysis and figure scripts, with the stage specifications.</li>
+    <li><a href="https://github.com/haosenwang1018/judge-hacking-pace/tree/main/results">Per-step logs and analysis outputs</a> for the 38 runs of stages 1–5.</li>
+    <li><a href="https://github.com/haosenwang1018/judge-hacking-pace/tree/main/data/answer_samples">The answers read for the paper</a> (stages 1–5): 300 from the parser audit and 220 fooled answers, each with question, reference, verbatim answer and judge score.</li>
+    <li>The code, logs and read answers of stages 6 and 7 (the smaller judge and the gold-reward control) are not yet in the repository.</li>
+  </ul>
+  <h3>Citation</h3>
+  <div class="bib">
+    <button class="copy" id="copy-bib" type="button">Copy</button>
+<pre id="bibtex">@misc{wang2026pace,
+  title         = {Who Sets the Pace of Judge Hacking? Judge Capability
+                   versus the Policy--Judge Gap},
+  author        = {Wang, Haosen},
+  year          = {2026},
+  eprint        = {2610.15778},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {arXiv:2610.15778}
+}</pre>
+  </div>
+</section>
+
+<section id="ai-use">
+  <h2>AI use</h2>
+  <p>Claude Opus 5.5 (Anthropic), working through Claude Code, performed all computations and manuscript preparation. Haosen Wang conceived and directed the project, checked all results and the manuscript, and takes full responsibility for the content of the paper. The AI use disclosure of the paper (arXiv v1) reads:</p>
+  <!-- V2-PENDING: arXiv v2 changes only this disclosure. In v2 the first sentence below is replaced by:
+       "The author conceived and directed the project and made all scientific decisions. LLM agents were used extensively under the author's continuous direction." -->
+  <p>This paper was produced with heavy use of LLM agents. The main agent was Claude Opus 5.5 (Anthropic), run through Claude Code. It started sub-agents (other Claude instances, including Claude Sonnet for literature search and classification) for parallel tasks, and several agent sessions worked in parallel on different stages, coordinated through shared status files.</p>
+  <p>The human author conceived and directed the project. The author proposed the research questions, the core ideas and the hypotheses, designed each stage, set the overall direction, reviewed the results of every stage and decided whether to continue. The author and the agents interpreted the results jointly. The agents did the following tasks:</p>
+  <ul class="plain">
+    <li><b>Specifications:</b> wrote the stage specifications from the author's designs. The author reviewed each one, and each was locked with a sha256 hash before its runs.</li>
+    <li><b>Implementation:</b> wrote and debugged all training, scoring and analysis code, and launched and monitored all runs on the GPU servers.</li>
+    <li><b>Analysis:</b> computed all statistics and did the per-answer reading (the 300-answer parser audit and the 20 fooled answers per cell).</li>
+    <li><b>Literature:</b> surveyed the literature and checked every citation against its arXiv, proceedings or model-card page.</li>
+    <!-- V2-PENDING: in v2 this item reads: "Writing and figures: drafted and polished the text, figures and tables under the author's direction. The author shaped the arguments and reviewed every draft, and the agents revised the drafts after each round of feedback. Simulated reviewer reports, also generated by agents, were used in the revision." -->
+    <li><b>Writing and figures:</b> wrote the full text and made all figures and tables. The author shaped the arguments, the text and the figures through repeated discussion with the agents, and the agents revised them after each round. The author did not edit the text directly. Simulated reviewer reports, also generated by agents, were also used to revise the text.</li>
+  </ul>
+  <p><b>Verification.</b> An agent traced every number in the paper to a saved result file, and a separate agent pass checked numbers, citations and claims before submission. The author checked all figures and numbers and read all answer samples. The author takes responsibility for the final content of this work, including text, claims and artifacts produced with the aid of generative AI. No AI system is listed as an author.</p>
+  <p>This page was also made with Claude.</p>
+</section>
+
+</main>
+
+<footer>
+  Haosen Wang · Code under MIT; generated outputs and result files under CC BY 4.0.
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-bib');
+  var pre = document.getElementById('bibtex');
+  btn.addEventListener('click', function () {
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(pre);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected';
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pre.textContent).then(done, fallback);
+    } else { fallback(); }
+  });
+  document.querySelectorAll('a[aria-disabled="true"]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+})();
+</script>
+</body>
+</html>
