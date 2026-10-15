@@ -1,7 +1,7 @@
 # Who Sets the Pace of Judge Hacking? Judge Capability versus the Policy–Judge Gap
 
 Code, per-step logs, analysis scripts and read answer samples for the paper of the same title:
-Haosen Wang, arXiv:2610.15778 (v1, 11 Oct 2026), https://arxiv.org/abs/2610.15778.
+Haosen Wang, arXiv:2610.15778 (v2, 14 Oct 2026; v1 of 11 Oct 2026 remains on arXiv), https://arxiv.org/abs/2610.15778.
 Project page: `docs/index.html`.
 
 **Summary.** We train small Qwen2.5 policies (0.5B and 1.5B, SFT on GSM8K) with GRPO against a frozen,
@@ -32,13 +32,14 @@ results/paper/       outputs of code/paper/analysis (all figures and paper table
 data/EXP-046/        step-0 samples (256 problems x 8 per policy) and judge scores used for step-0 predictors
 data/EXP-034/        model file manifests (HF API listings used to verify weight hashes)
 data/answer_samples/ 520 of the answers read for the paper (stages 1–5; see below)
-docs/                project page (GitHub Pages) with the figures of arXiv v1
+docs/                project page (GitHub Pages) with the figures of arXiv v2
 paper/               the paper as published on arXiv
 tools/make_workdir.sh  rebuilds the original directory layout with symlinks so the scripts run unchanged
 ```
 
-`paper/judge-hacking-pace-arxiv-v1.pdf` is arXiv:2610.15778v1 as served by arXiv
-(sha256 `01ca5f636fab4ba398b66d9f6014ae21a94e4b8f4806ef5f8447464185882e44`).
+`paper/judge-hacking-pace-arxiv-v2.pdf` is arXiv:2610.15778v2 as served by arXiv
+(sha256 `90cde7be7fb13512950775ff49e6ce51b2cb3a0fb65ceac6b85c5344325981ff`). v2 changes the abstract, the AI use
+disclosure and the layout; the results are those of v1, which remains at https://arxiv.org/abs/2610.15778v1.
 
 **Language note.** `SPEC.md`, `PROCESS.md` and `results/*/SUMMARY.md` are the original pre-registration
 documents and run logs. They are written partly in Chinese and are kept as they were (only redacted, see
@@ -73,23 +74,24 @@ A cell is policy x judge, e.g. `P05JL8`. Run IDs: `<date>-<host>-e<stage>-<cell>
 
 ## Map from the paper to files
 
-Figure and table numbers follow arXiv v1. Figures 1–3 and Tables 3–4 of v1 also include the stage-6 cell
+Figure and table numbers follow arXiv v2. Figures 1, 2 and 4 and Tables 2–3 of v2 also include the stage-6 cell
 (Qw3-0.6), and Table 7 and Section 3 include stage 7; those data and the updated figure scripts are not yet in
-this repository, so the scripts here draw the stage 1–5 cells only. Figures 4, 5 and 6 are unchanged.
+this repository, so the scripts here draw the stage 1–5 cells only. Figures 6 and 7 are unchanged. Figure 5 shows
+the same data, but v2 places its legend outside the plot; the script here draws the v1 layout.
 
-| Paper item (arXiv v1) | Script | Inputs / outputs |
+| Paper item (arXiv v2) | Script | Inputs / outputs |
 |---|---|---|
-| Fig. 1 (onset vs step-0 capability gap), Fig. 4 (fooled fraction curves) | `code/paper/figures/make_fig1_gap.py` (writes `fig1_gap` and `fig5_curves`) | `results/paper/gap261011.json`, `results/EXP-046/analysis46.json`, `results/EXP-041/static_lenient.json`, `results/EXP-039/compact/`, `results/EXP-041/compact/` |
-| Table 2 (pre-specified pairs), Sec. 4, Table 5 (contrasts) | `code/paper/analysis/gap261011.py`, `extra261011.py` | `results/paper/gap261011.json`, `extra261011.json` |
-| Sec. 3, Fig. 2 (held-out gold accuracy), Table 3 (gold accuracy per cell) | `code/paper/analysis/extract_remote.py` (run on the servers over saved greedy eval outputs) → `gold261011.py` → `code/paper/figures/make_fig3_gold.py` | `results/paper/evals_lenient.json` → `gold261011.json` |
-| Fig. 3 (training-rollout accuracy) | `code/paper/figures/make_fig4_rollout.py` | `gold261011.json`, `analysis46.json` |
+| Fig. 1 (onset vs step-0 capability gap), Fig. 5 (fooled fraction curves) | `code/paper/figures/make_fig1_gap.py` (writes `fig1_gap` and `fig5_curves`) | `results/paper/gap261011.json`, `results/EXP-046/analysis46.json`, `results/EXP-041/static_lenient.json`, `results/EXP-039/compact/`, `results/EXP-041/compact/` |
+| Table 1 (pre-specified pairs), Sec. 4, Table 4 (contrasts) | `code/paper/analysis/gap261011.py`, `extra261011.py` | `results/paper/gap261011.json`, `extra261011.json` |
+| Sec. 3, Fig. 2 (held-out gold accuracy), Table 2 (gold accuracy per cell) | `code/paper/analysis/extract_remote.py` (run on the servers over saved greedy eval outputs) → `gold261011.py` → `code/paper/figures/make_fig3_gold.py` | `results/paper/evals_lenient.json` → `gold261011.json` |
+| Fig. 4 (training-rollout accuracy) | `code/paper/figures/make_fig4_rollout.py` | `gold261011.json`, `analysis46.json` |
 | Onset vs rollout-peak count | `code/paper/analysis/onset_peak261011.py` | `results/paper/onset_peak261011.json` |
-| Sec. 5, Fig. 5 (blind test of step-0 predictors) | `code/EXP-047/predictors47.py`, `analysis47.py`; `code/EXP-046/analysis46.py`; `code/paper/figures/make_fig2_blind.py` | `results/EXP-047/{predictors47,analysis47,FINAL_PREDICTOR}.json`, `results/EXP-046/{analysis46,predictors46}.json` |
-| Sec. 5.1 (judge families), Table 4 (all cells), 38-run AFT fit | `code/EXP-046/analysis46.py` (AFT and stats code in `stats.py`); `desc46.py` (`t_half46.json`) | `results/EXP-046/analysis46.json`, `t_half46.json`, `results/EXP-04*/static_lenient.json` |
+| Sec. 5, Fig. 6 (blind test of step-0 predictors) | `code/EXP-047/predictors47.py`, `analysis47.py`; `code/EXP-046/analysis46.py`; `code/paper/figures/make_fig2_blind.py` | `results/EXP-047/{predictors47,analysis47,FINAL_PREDICTOR}.json`, `results/EXP-046/{analysis46,predictors46}.json` |
+| Sec. 5.1 (judge families), Table 3 (all cells), 38-run AFT fit | `code/EXP-046/analysis46.py` (AFT and stats code in `stats.py`); `desc46.py` (`t_half46.json`) | `results/EXP-046/analysis46.json`, `t_half46.json`, `results/EXP-04*/static_lenient.json` |
 | Stage verdicts (App. A) | `code/EXP-034/analyze34.py`, `code/EXP-039/analyze39.py`, `code/EXP-041/analyze41.py` | `results/EXP-034/analysis_stage1.json`, `results/EXP-039/analysis39.json`, `results/EXP-041/analysis41.json` |
 | Offline transfer to Llama | `code/EXP-039/llama39.py` | `results/EXP-039/llama_rescore.json` |
 | Format drift | no saved script (computed inline from the compact logs during stage 3; see `specs/EXP-041/PROCESS.md`) | `results/EXP-041/format_drift41.json` |
-| Fooled answers read (20 per cell) | `code/EXP-039/fooled39.py`, `read_fooled39.py`; `code/EXP-041/fooled41.py`; `code/EXP-046/extract46.py` | `results/EXP-039/fooled/`, `results/EXP-041/fooled/`, `results/EXP-046/fooled_*.jsonl`, `fooled_read_counts.json` |
+| Fooled answers read (20 per cell); Fig. 3 (one fooled answer: `P15J7`, seed 303, step 57) | `code/EXP-039/fooled39.py`, `read_fooled39.py`; `code/EXP-041/fooled41.py`; `code/EXP-046/extract46.py` | `results/EXP-039/fooled/`, `results/EXP-041/fooled/`, `results/EXP-046/fooled_*.jsonl`, `fooled_read_counts.json` |
 | Parser audit (300 answers), App. examples | `code/paper/analysis/extract_remote.py`, `show.py` | `results/paper/audit_sample.json`, `parser_audit261011.json`, `data/answer_samples/answer_samples.json` |
 | Compute | `code/EXP-039/compute39.py` | `results/EXP-039/runs/driver.log`, `pids.txt` |
 
@@ -192,5 +194,6 @@ the same way, so all files stay consistent. Some SPEC/PROCESS documents mention 
 
 ## AI use
 
-The code and the documents in this repository were written with heavy use of Claude (Anthropic) agents;
-see the AI use disclosure in the paper (arXiv:2610.15778, after the Conclusion).
+The author conceived and directed the project and made all scientific decisions. The code and the documents
+in this repository were written with extensive use of Claude (Anthropic) agents under the author's direction;
+see the AI use disclosure in the paper (arXiv:2610.15778v2, after the Conclusion).
